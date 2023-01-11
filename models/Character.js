@@ -22,6 +22,10 @@ Character.init(
         hitPoints: {
             type: DataTypes.INTEGER,
             allowNull: false
+        },
+        mana: {
+            type: DataTypes.INTEGER,
+            allowNull: false
         }
     },
     {
