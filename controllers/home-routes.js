@@ -1,5 +1,6 @@
 const router = require("express").Router();
-const { User } = require("../models");
+const { User, Hero } = require("../models");
+const withAuth = require("../utils/auth");
 
 router.get("/", async (req, res) => {
   res.render("homepage", {
@@ -9,6 +10,10 @@ router.get("/", async (req, res) => {
 
 router.get("/login", (req, res) => {
   res.render("login");
+});
+
+router.get("/create", withAuth, async (req, res) => {
+  res.render("hero-create", { logged_in: true });
 });
 
 module.exports = router;
