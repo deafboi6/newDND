@@ -1,12 +1,13 @@
- const Choice = "death-dog"
 
- var monsterName = ""
- var monsterDesc = ""
- var monsterLife = ""
- var monsterDamage = ""
+const Choice = ["bandit-captain","archmage","assassin",];
+const x = Math.floor(Math.random() * 3);
+
+
+
+
 
 function getAPI() {
-    var API = "https://www.dnd5eapi.co/api/monsters/"+Choice;
+    var API = "https://www.dnd5eapi.co/api/monsters/"+Choice[x];
 
    fetch(API)
         .then(async function (response) {
@@ -15,27 +16,17 @@ function getAPI() {
         })
 
     .then(function (data) {
+    
         console.log(data)
-            monsterName = data.name;
-            monsterDesc = data.desc;
-            monsterLife = data.hit_points;
-            monsterDamage = data.strength;
-
-            console.log(monsterName, monsterLife, monsterDamage, monsterDesc);
-
-            // var dropDown2 = document.getElementById("dropdown2");
-            // var newli = document.createElement("li");
-            // newli.textContent = parkNameList;
-            // dropDown2.append(newli);
-            // var h2El = document.createElement('h2');
-            // h2El.textContent=parkNameList;
-            // parksHashMap[parkNameList] = data.data[i];
+            var monsterName = data.name;
+            var monsterDesc = data.desc
+            var monsterLife = data.hit_points;
+            var monsterStrength = data.strength;
+            var monsterDexterity = data.dexterity;
+            var monsterIntelligemce = data.intelligence
             
-        //     for (let i =0; i < data.id.value; i++){
-        // }
-
-    })
+            console.log(monsterName,monsterDesc,monsterLife,monsterStrength,monsterDexterity,monsterIntelligemce);
+        })
 }
 
-console.log("test22",monsterName, monsterLife, monsterDamage, monsterDesc);
 getAPI();
