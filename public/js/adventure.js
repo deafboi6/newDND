@@ -9,6 +9,15 @@ const answerThreeEl = document.querySelector("#choice-three");
 const answerFourEl = document.querySelector("#choice-four");
 const mapEl = document.querySelector("#dungeon-map");
 
+// Hooks to the UI
+const answerButtonsEl = document.querySelector(".choiceButtons");
+const questionTextEl = document.querySelector("#question-text");
+const answerOneEl = document.querySelector("#choice-one");
+const answerTwoEl = document.querySelector("#choice-two");
+const answerThreeEl = document.querySelector("#choice-three");
+const answerFourEl = document.querySelector("#choice-four");
+const mapEl = document.querySelector("#dungeon-map");
+
 const Challenge = [5, 10, 15];
 const x = Math.floor(Math.random() * 3);
 var API = "https://www.dnd5eapi.co/api/monsters/?challenge_rating=" + Challenge[x];
@@ -74,6 +83,10 @@ const questLog = [
     choiceTwo: "North",
     choiceThree: "East",
     choiceFour: "South",
+    choiceOne: "Left",
+    choiceTwo: "Straight",
+    choiceThree: "-",
+    choiceFour: "-",
     search: "main-crossing",
   },
   {
@@ -113,6 +126,14 @@ const questLog = [
     search: "room-3-treasure",
   },
 ];
+
+///////////////////////////////////////////////////////////////////
+function findIndex(x) {
+  const index = questLog.map((i) => i.search).indexOf(x);
+  return index;
+}
+console.log(findIndex("dungeon-start"));
+////////////////////////////////////////////////////////////////////
 
 // used in get request to look up the hero's initial stats
 const id = window.location.toString().split("/")[window.location.toString().split("/").length - 1];
