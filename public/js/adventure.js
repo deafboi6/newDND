@@ -1,6 +1,8 @@
 // character heals 50 points from the treasure
 
 // character heals 50 points from the treasure
+
+// character heals 50 points from the treasure
 // Hooks to the UI
 const answerButtonsEl = document.querySelector(".choiceButtons");
 const questionTextEl = document.querySelector("#question-text");
@@ -27,8 +29,11 @@ let questProgress = 0;
 let randomEncounter = 0;
 let questProgress = 0;
 let randomEncounter = 0;
+let questProgress = 0;
+let randomEncounter = 0;
 
 // Basic adventure options
+const questLog = [
 const questLog = [
 const questLog = [
   {
@@ -38,6 +43,7 @@ const questLog = [
     choiceTwo: "Heal",
     choiceThree: "-",
     choiceFour: "-",
+    search: "dungeon-start",
     search: "dungeon-start",
     search: "dungeon-start",
   },
@@ -50,6 +56,7 @@ const questLog = [
     choiceFour: "-",
     search: "boss-1-defeated",
     search: "boss-1-defeated",
+    search: "boss-1-defeated",
   },
   {
     //questLog[2] - if encounter monster
@@ -58,6 +65,7 @@ const questLog = [
     choiceTwo: "Heal",
     choiceThree: "-",
     choiceFour: "-",
+    search: "room-4-monster",
     search: "room-4-monster",
     search: "room-4-monster",
   },
@@ -82,7 +90,6 @@ const questLog = [
     choiceTwo: "Straight",
     choiceThree: "-",
     choiceFour: "-",
-    search: "main-crossing",
     search: "main-crossing",
   },
   {
@@ -126,14 +133,6 @@ const questLog = [
     search: "room-3-treasure",
   },
 ];
-
-///////////////////////////////////////////////////////////////////
-function findIndex(x) {
-  const index = questLog.map((i) => i.search).indexOf(x);
-  return index;
-}
-console.log(findIndex("dungeon-start"));
-////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////
 function findIndex(x) {
@@ -261,7 +260,7 @@ function handleChoice() {
   console.log(selectedChoice);
   // first enemy encounter at the start of the dungeon
   if (questProgress === 0) {
-    questProgress = findIndex("boss-1-defeated");
+    questProgress = findIndex("boss-findIndex("boss-1-defeated")-defeated");
     renderAdventure();
     // first hallway after the boss
   } else if (questProgress === findIndex("boss-1-defeated")) {

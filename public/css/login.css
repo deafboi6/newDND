@@ -70,6 +70,7 @@ cursor: /* Start https://www.cursors-4u.com */url(https://cur.cursors-4u.net/gam
     from {background-color: red;}
     to {background-color: black;}
     to {background-color: rgb(218, 214, 214);}
+<<<<<<< HEAD
  }
  
  h1 {
@@ -136,3 +137,6 @@ cursor: /* Start https://www.cursors-4u.com */url(https://cur.cursors-4u.net/gam
      0% { opacity: 0; }
      100% { opacity: 1;}
  }
+=======
+}
+>>>>>>> 6a61c50 (stash)
