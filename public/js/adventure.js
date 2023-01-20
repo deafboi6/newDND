@@ -7,11 +7,21 @@ var answerThreeEl = document.querySelector("#choice-three");
 var answerFourEl = document.querySelector("#choice-four");
 var mapEl = document.querySelector("#dungeon-map");
 
+const Challenge = [5,10,15]
+const x = Math.floor(Math.random() * 3);
+var API = "https://www.dnd5eapi.co/api/monsters/?challenge_rating="+Challenge[x];
+
 // Initialize hero stats before they are pulled from db fetch
 let heroName = "";
 let heroAttack = 0;
 let heroHp = 0;
 let heroMana = 0;
+
+var monsterName = "";
+var monsterLife = 0;
+var monsterStrength = 0;
+var monsterDexterity = 0;
+var monsterIntelligence = 0;
 
 //Quest state variable
 var questProgress = 0;
@@ -116,17 +126,57 @@ const getHero = () =>
       console.error("Error:", error);
     });
 
+ function getEnemy() {
+        var API = "https://www.dnd5eapi.co/api/monsters/?challenge_rating="+Challenge[x];
+    
+       fetch(API)
+            .then(async function (response) {
+    
+            return response.json();
+            })
+    
+        .then(function (data) {
+            console.log(data)
+            var numMonster = data.count
+            var monsterIndex = [];
+            for (let i=0; i < numMonster; i++){
+                var newMonster = data.results[i].index
+                monsterIndex.push(newMonster)
+            }
+               var y = Math.floor(Math.random()*data.count)
+               singleAPI = "https://www.dnd5eapi.co/api/monsters/"+monsterIndex[y];
+               fetch(singleAPI)
+                .then(async function (response) {
+                return response.json();
+            })
+            .then(function (data){
+                monsterName = data.name;
+                monsterLife = data.hit_points;
+                monsterStrength = data.strength;
+                monsterDexterity = data.dexterity;
+                monsterIntelligemce = data.intelligence
+                console.log(monsterName,monsterLife,monsterStrength,monsterDexterity,monsterIntelligemce);
+            })
+            // console.log(monsterName,monsterLife,monsterStrength,monsterDexterity,monsterIntelligemce);  
+          }
+        )};
+
 // This is our init function to start the game and call the function to get the Hero's initial stats.
 // Check the web browsers console log to see the stats printed.
-const startGame = () =>
-  getHero()
-    .then(() => {
+const startGame = async () => {
+  await getHero()
       console.log("heroName: ", heroName);
       console.log("heroAttack: ", heroAttack);
       console.log("heroHp: ", heroHp);
       console.log("heroMana: ", heroMana);
-    })
-    .then(renderAdventure);
+  await getEnemy()
+      console.log("Enemy Name: ", monsterName);
+      console.log("Enemy HitPoints: ", monsterLife);
+      console.log("Enemy Strength: ", monsterStrength);
+      console.log("Enemy Dexterity: ", monsterDexterity);
+      console.log("Enemy Intelligence: ", monsterIntelligence)
+  renderAdventure();
+};
 
 // renders the question and button text on the front end based on the array and quest progress value
 function renderAdventure() {
