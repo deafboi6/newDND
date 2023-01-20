@@ -1,3 +1,23 @@
+// character heals 50 points from the treasure
+
+// Hooks to the UI
+const answerButtonsEl = document.querySelector(".choiceButtons");
+const questionTextEl = document.querySelector("#question-text");
+const answerOneEl = document.querySelector("#choice-one");
+const answerTwoEl = document.querySelector("#choice-two");
+const answerThreeEl = document.querySelector("#choice-three");
+const answerFourEl = document.querySelector("#choice-four");
+const mapEl = document.querySelector("#dungeon-map");
+
+// Hooks to the UI
+const answerButtonsEl = document.querySelector(".choiceButtons");
+const questionTextEl = document.querySelector("#question-text");
+const answerOneEl = document.querySelector("#choice-one");
+const answerTwoEl = document.querySelector("#choice-two");
+const answerThreeEl = document.querySelector("#choice-three");
+const answerFourEl = document.querySelector("#choice-four");
+const mapEl = document.querySelector("#dungeon-map");
+
 // Hooks to the UI
 var answerButtonsEl = document.querySelector(".choiceButtons");
 var questionTextEl = document.querySelector("#question-text");
@@ -69,14 +89,7 @@ const questLog = [
     choiceTwo: "North",
     choiceThree: "East",
     choiceFour: "South",
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 6469e96 (stash)
-    choiceOne: "Left",
-    choiceTwo: "Straight",
-    choiceThree: "-",
-    choiceFour: "-",
+    search: "main-crossing",
   },
   {
     //questLog[5] - If left at questLog[4] and encounter monster
