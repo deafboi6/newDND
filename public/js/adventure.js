@@ -9,9 +9,9 @@ const answerThreeEl = document.querySelector("#choice-three");
 const answerFourEl = document.querySelector("#choice-four");
 const mapEl = document.querySelector("#dungeon-map");
 
-const Challenge = [5,10,15]
+const Challenge = [5, 10, 15];
 const x = Math.floor(Math.random() * 3);
-var API = "https://www.dnd5eapi.co/api/monsters/?challenge_rating="+Challenge[x];
+var API = "https://www.dnd5eapi.co/api/monsters/?challenge_rating=" + Challenge[x];
 
 // Initialize hero stats before they are pulled from db fetch
 let heroName = "";
@@ -43,8 +43,8 @@ const questLog = [
   {
     //questLog[1]
     question: "You survived the fight. You can now head down a hall and come to a fork. You can proceed turn left or go straight. What do you want to do?",
-    choiceOne: "Left",
-    choiceTwo: "Straight",
+    choiceOne: "North",
+    choiceTwo: "East",
     choiceThree: "-",
     choiceFour: "-",
     search: "boss-1-defeated",
@@ -70,10 +70,10 @@ const questLog = [
   {
     //questLog[4] - if left at questLog[1]
     question: "You turned left. You can go left or straight. What do you do?",
-    choiceOne: "Left",
-    choiceTwo: "Straight",
-    choiceThree: "-",
-    choiceFour: "-",
+    choiceOne: "West",
+    choiceTwo: "North",
+    choiceThree: "East",
+    choiceFour: "South",
     search: "main-crossing",
   },
   {
@@ -114,14 +114,6 @@ const questLog = [
   },
 ];
 
-///////////////////////////////////////////////////////////////////
-function findIndex(x) {
-  const index = questLog.map((i) => i.search).indexOf(x);
-  return index;
-}
-console.log(findIndex("dungeon-start"));
-////////////////////////////////////////////////////////////////////
-
 // used in get request to look up the hero's initial stats
 const id = window.location.toString().split("/")[window.location.toString().split("/").length - 1];
 // Gets the Hero's data from our db
@@ -145,76 +137,76 @@ const getHero = () =>
       console.error("Error:", error);
     });
 
- function getEnemy() {
-        var API = "https://www.dnd5eapi.co/api/monsters/?challenge_rating="+Challenge[x];
-    
-       fetch(API)
-            .then(async function (response) {
-    
-            return response.json();
-            })
-    
+function getEnemy() {
+  var API = "https://www.dnd5eapi.co/api/monsters/?challenge_rating=" + Challenge[x];
+
+  fetch(API)
+    .then(async function (response) {
+      return response.json();
+    })
+
+    .then(function (data) {
+      console.log(data);
+      var numMonster = data.count;
+      var monsterIndex = [];
+      for (let i = 0; i < numMonster; i++) {
+        var newMonster = data.results[i].index;
+        monsterIndex.push(newMonster);
+      }
+      var y = Math.floor(Math.random() * data.count);
+      singleAPI = "https://www.dnd5eapi.co/api/monsters/" + monsterIndex[y];
+      fetch(singleAPI)
+        .then(async function (response) {
+          return response.json();
+        })
         .then(function (data) {
-            console.log(data)
-            var numMonster = data.count
-            var monsterIndex = [];
-            for (let i=0; i < numMonster; i++){
-                var newMonster = data.results[i].index
-                monsterIndex.push(newMonster)
-            }
-               var y = Math.floor(Math.random()*data.count)
-               singleAPI = "https://www.dnd5eapi.co/api/monsters/"+monsterIndex[y];
-               fetch(singleAPI)
-                .then(async function (response) {
-                return response.json();
-            })
-            .then(function (data){
-                monsterName = data.name;
-                monsterLife = data.hit_points;
-                monsterStrength = data.strength;
-                monsterDexterity = data.dexterity;
-                monsterIntelligemce = data.intelligence
-                console.log(monsterName,monsterLife,monsterStrength,monsterDexterity,monsterIntelligemce);
-            })
-            // console.log(monsterName,monsterLife,monsterStrength,monsterDexterity,monsterIntelligemce);  
-          }
-        )};
+          monsterName = data.name;
+          monsterLife = data.hit_points;
+          monsterStrength = data.strength;
+          monsterDexterity = data.dexterity;
+          monsterIntelligemce = data.intelligence;
+          console.log(monsterName, monsterLife, monsterStrength, monsterDexterity, monsterIntelligemce);
+        });
+      // console.log(monsterName,monsterLife,monsterStrength,monsterDexterity,monsterIntelligemce);
+      console.log("monsterIndex: ", monsterIndex[0]);
+    });
+}
 
 // This is our init function to start the game and call the function to get the Hero's initial stats.
 // Check the web browsers console log to see the stats printed.
 const startGame = async () => {
-  await getHero()
-      console.log("heroName: ", heroName);
-      console.log("heroAttack: ", heroAttack);
-      console.log("heroHp: ", heroHp);
-      console.log("heroMana: ", heroMana);
-  await getEnemy()
-      console.log("Enemy Name: ", monsterName);
-      console.log("Enemy HitPoints: ", monsterLife);
-      console.log("Enemy Strength: ", monsterStrength);
-      console.log("Enemy Dexterity: ", monsterDexterity);
-      console.log("Enemy Intelligence: ", monsterIntelligence)
+  await getHero();
+  console.log("heroName: ", heroName);
+  console.log("heroAttack: ", heroAttack);
+  console.log("heroHp: ", heroHp);
+  console.log("heroMana: ", heroMana);
+  await getEnemy();
+  console.log("Enemy Name: ", monsterName);
+  console.log("Enemy HitPoints: ", monsterLife);
+  console.log("Enemy Strength: ", monsterStrength);
+  console.log("Enemy Dexterity: ", monsterDexterity);
+  console.log("Enemy Intelligence: ", monsterIntelligence);
   renderAdventure();
 };
 
 // renders the question and button text on the front end based on the array and quest progress value
 function renderAdventure() {
   //set background images
-  if (questProgress === 1) {
+  if (questProgress === findIndex("boss-1-defeated")) {
     mapEl.src = "https://res.cloudinary.com/dfyvcni4b/image/upload/v1674013845/newDND/First_room_selection_option_gqd5aw.jpg";
-  } else if (questProgress === 2) {
+  } else if (questProgress === findIndex("room-4-monster")) {
     mapEl.src = "https://res.cloudinary.com/dfyvcni4b/image/upload/v1674013842/newDND/Blue_route_monster_te1lur.jpg";
-  } else if (questProgress === 3) {
+  } else if (questProgress === findIndex("room-4-treasure")) {
     mapEl.src = "https://res.cloudinary.com/dfyvcni4b/image/upload/v1674013842/newDND/Blue_route_chest_jmvkdy.jpg";
-  } else if (questProgress === 4) {
+  } else if (questProgress === findIndex("main-crossing")) {
     mapEl.src = "https://res.cloudinary.com/dfyvcni4b/image/upload/v1674013840/newDND/1st_red_route_--room_selection_aqa3uj.jpg";
-  } else if (questProgress === 5) {
+  } else if (questProgress === findIndex("room-2-monster")) {
     mapEl.src = "https://res.cloudinary.com/dfyvcni4b/image/upload/v1674013840/newDND/2nd_red_route_monster_kesar5.jpg";
-  } else if (questProgress === 6) {
+  } else if (questProgress === findIndex("room-2-treasure")) {
     mapEl.src = "https://res.cloudinary.com/dfyvcni4b/image/upload/v1674013840/newDND/2nd_red_route_chest_qxaunm.jpg";
-  } else if (questProgress === 7) {
+  } else if (questProgress === findIndex("room-3-monster")) {
     mapEl.src = "https://res.cloudinary.com/dfyvcni4b/image/upload/v1674013840/newDND/2nd_blue_route_monster_wt4bwq.jpg";
-  } else if (questProgress === 8) {
+  } else if (questProgress === findIndex("room-3-treasure")) {
     mapEl.src = "https://res.cloudinary.com/dfyvcni4b/image/upload/v1674013840/newDND/2nd_blue_route_chest_yncfwd.jpg";
   }
 
@@ -226,8 +218,13 @@ function renderAdventure() {
   answerFourEl.textContent = questLog[questProgress].choiceFour;
 }
 
+// Helper functions
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
+}
+function findIndex(x) {
+  const index = questLog.map((i) => i.search).indexOf(x);
+  return index;
 }
 
 //TODO: Need to build this out more. So far takes any value and progresses the quest without fighting, but navigation is working for a few turns
@@ -238,47 +235,47 @@ function handleChoice() {
     questProgress = findIndex("boss-1-defeated");
     renderAdventure();
     // first hallway after the boss
-  } else if (questProgress === 1) {
-    // player chooses left
+  } else if (questProgress === findIndex("boss-1-defeated")) {
+    // player chooses north
     if (selectedChoice === "choice-one") {
-      questProgress = 4;
+      questProgress = findIndex("main-crossing");
       renderAdventure();
-      // player chooses right and has 50/50 chance of treasure vs monster
+      // player chooses east and has 50/50 chance of treasure vs monster
     } else {
       randomEncounter = getRandomInt(2);
       if (randomEncounter === 0) {
         //Encounter monster
-        questProgress = 2;
+        questProgress = findIndex("room-4-monster");
         renderAdventure();
       } else {
         //Find treasure
-        questProgress = 3;
+        questProgress = findIndex("room-4-treasure");
         renderAdventure();
       }
     }
-  } else if (questProgress === 4) {
-    // player chooses left
+  } else if (questProgress === findIndex("main-crossing")) {
+    // player chooses west
     if (selectedChoice === "choice-one") {
       randomEncounter = getRandomInt(2);
       if (randomEncounter === 0) {
         //Encounter monster
-        questProgress = 5;
+        questProgress = findIndex("room-2-monster");
         renderAdventure();
       } else {
         //Find treasure
-        questProgress = 6;
+        questProgress = findIndex("room-2-treasure");
         renderAdventure();
       }
-      // player chooses straight and has 50/50 chance of treasure vs monster
+      // player chooses north and has 50/50 chance of treasure vs monster
     } else {
       randomEncounter = getRandomInt(2);
       if (randomEncounter === 0) {
         //Encounter monster
-        questProgress = 7;
+        questProgress = findIndex("room-3-monster");
         renderAdventure();
       } else {
         //Find treasure
-        questProgress = 8;
+        questProgress = findIndex("room-3-treasure");
         renderAdventure();
       }
     }
