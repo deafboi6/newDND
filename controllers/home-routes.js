@@ -3,20 +3,24 @@ const { User, Hero } = require("../models");
 const withAuth = require("../utils/auth");
 
 router.get("/", async (req, res) => {
-  const heroData = await Hero.findAll({
-    where: {
-      user_id: req.session.user_id,
-    },
-  }).catch((err) => {
-    res.json(err);
-  });
+  if (!req.session.user_id) {
+    res.render("homepage", {});
+  } else {
+    const heroData = await Hero.findAll({
+      where: {
+        user_id: req.session.user_id,
+      },
+    }).catch((err) => {
+      res.json(err);
+    });
 
-  const heroes = heroData.map((hero) => hero.get({ plain: true }));
+    const heroes = heroData.map((hero) => hero.get({ plain: true }));
 
-  res.render("homepage", {
-    heroes,
-    logged_in: req.session.logged_in,
-  });
+    res.render("homepage", {
+      heroes,
+      logged_in: req.session.logged_in,
+    });
+  }
 });
 
 router.get("/login", (req, res) => {
