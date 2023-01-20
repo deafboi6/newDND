@@ -1,32 +1,40 @@
 * {
-    box-sizing: border-box;
+    font-family: fantasy;
 }
 
-body, html {
-    height: 100%;
-    padding: 0;
-    margin: 0;
-    font-family: sans-serif;
-    color: rgb(128, 114, 114)
+body {
+    padding: 1rem;
+    background: rgb(218, 214, 214);
+    animation-name: logincard;
+    animation-duration: 7s;
+}
+
+nav {
+    text-align: center;
 }
 
 
-a {
-    text-decoration: none;
-    font-weight: bold;
-    color: black;
+a:-webkit-any-link {
+    color: aliceblue;
+    font-size: x-large;
+    text-decoration: line-through;
+    line-height: 50px;
 }
 
-a:hover {
-    color: #53667e;
+a:-webkit-any-link:hover {
+    color: rgb(16, 15, 15);
+    text-decoration: double;
 }
 
-button {
-    border: 0;
-    padding: 1%;
-    font-weight: bold;
-    transition: background-color .1s;
-    cursor: pointer;
-    border-radius: 5px;
+h1 {
+    text-align: center;
+    color: white;
 }
 
+.login-card {
+    text-align: center;
+}
+
+main {
+    text-align: center;
+}
