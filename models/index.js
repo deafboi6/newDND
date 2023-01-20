@@ -1,5 +1,6 @@
 const User = require("./User");
 const Hero = require("./Hero");
+const Monster = require("./Monster");
 
 Hero.belongsTo(User, {
   foreignKey: "user_id",
@@ -10,4 +11,4 @@ User.hasMany(Hero, {
   onDelete: "CASCADE",
 });
 
-module.exports = { User, Hero };
+module.exports = { User, Hero, Monster };
