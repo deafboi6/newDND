@@ -1,38 +1,11 @@
-// character heals 50 points from the treasure
-<<<<<<< HEAD
-=======
-
 // Hooks to the UI
-const answerButtonsEl = document.querySelector(".choiceButtons");
-const questionTextEl = document.querySelector("#question-text");
-const answerOneEl = document.querySelector("#choice-one");
-const answerTwoEl = document.querySelector("#choice-two");
-const answerThreeEl = document.querySelector("#choice-three");
-const answerFourEl = document.querySelector("#choice-four");
-const mapEl = document.querySelector("#dungeon-map");
->>>>>>> b78a3e7 (stash)
-
-// Hooks to the UI
-const answerButtonsEl = document.querySelector(".choiceButtons");
-const questionTextEl = document.querySelector("#question-text");
-const answerOneEl = document.querySelector("#choice-one");
-const answerTwoEl = document.querySelector("#choice-two");
-const answerThreeEl = document.querySelector("#choice-three");
-const answerFourEl = document.querySelector("#choice-four");
-const mapEl = document.querySelector("#dungeon-map");
-
-// Hooks to the UI
-const answerButtonsEl = document.querySelector(".choiceButtons");
-const questionTextEl = document.querySelector("#question-text");
-const answerOneEl = document.querySelector("#choice-one");
-const answerTwoEl = document.querySelector("#choice-two");
-const answerThreeEl = document.querySelector("#choice-three");
-const answerFourEl = document.querySelector("#choice-four");
-const mapEl = document.querySelector("#dungeon-map");
-
-const Challenge = [5, 10, 15];
-const x = Math.floor(Math.random() * 3);
-var API = "https://www.dnd5eapi.co/api/monsters/?challenge_rating=" + Challenge[x];
+var answerButtonsEl = document.querySelector(".choiceButtons");
+var questionTextEl = document.querySelector("#question-text");
+var answerOneEl = document.querySelector("#choice-one");
+var answerTwoEl = document.querySelector("#choice-two");
+var answerThreeEl = document.querySelector("#choice-three");
+var answerFourEl = document.querySelector("#choice-four");
+var mapEl = document.querySelector("#dungeon-map");
 
 // Initialize hero stats before they are pulled from db fetch
 let heroName = "";
@@ -104,11 +77,6 @@ const questLog = [
     choiceTwo: "Straight",
     choiceThree: "-",
     choiceFour: "-",
-<<<<<<< HEAD
-=======
->>>>>>> b78a3e7 (stash)
->>>>>>> 6469e96 (stash)
-    search: "main-crossing",
   },
   {
     //questLog[5] - If left at questLog[4] and encounter monster
