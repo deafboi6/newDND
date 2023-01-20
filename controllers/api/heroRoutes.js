@@ -20,4 +20,19 @@ router.post("/", async (req, res) => {
   }
 });
 
+// gets hero by id. this is called when the game starts
+router.get("/:id", async (req, res) => {
+  try {
+    const heroData = await Hero.findByPk(req.params.id);
+
+    const hero = heroData.get({ plain: true });
+
+    console.log("HERO: ", hero);
+
+    res.status(200).json(hero);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 module.exports = router;

@@ -32,9 +32,6 @@ router.get("/create", withAuth, async (req, res) => {
   res.render("hero-create", { logged_in: true });
 });
 
-router.get("/create", withAuth, async (req, res) => {
-  res.render("hero-create", { logged_in: true });
-});
 
 router.get("/adventure", withAuth, async (req, res) => {
   res.render("adventure", { logged_in: true });
