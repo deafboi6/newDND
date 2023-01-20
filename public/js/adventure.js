@@ -18,14 +18,7 @@ const answerThreeEl = document.querySelector("#choice-three");
 const answerFourEl = document.querySelector("#choice-four");
 const mapEl = document.querySelector("#dungeon-map");
 
-// Hooks to the UI
-var answerButtonsEl = document.querySelector(".choiceButtons");
-var questionTextEl = document.querySelector("#question-text");
-var answerOneEl = document.querySelector("#choice-one");
-var answerTwoEl = document.querySelector("#choice-two");
-var answerThreeEl = document.querySelector("#choice-three");
-var answerFourEl = document.querySelector("#choice-four");
-var mapEl = document.querySelector("#dungeon-map");
+
 
 // Initialize hero stats before they are pulled from db fetch
 let heroName = "";
