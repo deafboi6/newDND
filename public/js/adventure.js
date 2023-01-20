@@ -1,5 +1,4 @@
 // character heals 50 points from the treasure
-
 // Hooks to the UI
 const answerButtonsEl = document.querySelector(".choiceButtons");
 const questionTextEl = document.querySelector("#question-text");
