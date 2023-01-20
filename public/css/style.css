@@ -1,3 +1,7 @@
+#dungeon-map {
+  max-height: 500px;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -30,6 +34,3 @@ button {
   border-radius: 5px;
 }
 
-#dungeon-map {
-  max-height: 500px;
-}
