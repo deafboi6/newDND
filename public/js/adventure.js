@@ -1,4 +1,6 @@
 // character heals 50 points from the treasure
+
+// character heals 50 points from the treasure
 // Hooks to the UI
 const answerButtonsEl = document.querySelector(".choiceButtons");
 const questionTextEl = document.querySelector("#question-text");
@@ -7,11 +9,6 @@ const answerTwoEl = document.querySelector("#choice-two");
 const answerThreeEl = document.querySelector("#choice-three");
 const answerFourEl = document.querySelector("#choice-four");
 const mapEl = document.querySelector("#dungeon-map");
-
-
-const Challenge = [5, 10, 15];
-const x = Math.floor(Math.random() * 3);
-var API = "https://www.dnd5eapi.co/api/monsters/?challenge_rating=" + Challenge[x];
 
 // Initialize hero stats before they are pulled from db fetch
 let heroName = "";
@@ -28,8 +25,11 @@ var monsterIntelligence = 0;
 //Quest state variable
 let questProgress = 0;
 let randomEncounter = 0;
+let questProgress = 0;
+let randomEncounter = 0;
 
 // Basic adventure options
+const questLog = [
 const questLog = [
   {
     //questLog[0]
@@ -38,6 +38,7 @@ const questLog = [
     choiceTwo: "Heal",
     choiceThree: "-",
     choiceFour: "-",
+    search: "dungeon-start",
     search: "dungeon-start",
   },
   {
@@ -48,6 +49,7 @@ const questLog = [
     choiceThree: "-",
     choiceFour: "-",
     search: "boss-1-defeated",
+    search: "boss-1-defeated",
   },
   {
     //questLog[2] - if encounter monster
@@ -57,6 +59,7 @@ const questLog = [
     choiceThree: "-",
     choiceFour: "-",
     search: "room-4-monster",
+    search: "room-4-monster",
   },
   {
     //questLog[3] - if find treasure
@@ -65,6 +68,7 @@ const questLog = [
     choiceTwo: "-",
     choiceThree: "-",
     choiceFour: "-",
+    search: "room-4-treasure",
     search: "room-4-treasure",
   },
   {
@@ -79,6 +83,7 @@ const questLog = [
     choiceThree: "-",
     choiceFour: "-",
     search: "main-crossing",
+    search: "main-crossing",
   },
   {
     //questLog[5] - If left at questLog[4] and encounter monster
@@ -87,6 +92,7 @@ const questLog = [
     choiceTwo: "Heal",
     choiceThree: "-",
     choiceFour: "-",
+    search: "room-2-monster",
     search: "room-2-monster",
   },
   {
@@ -97,6 +103,7 @@ const questLog = [
     choiceThree: "-",
     choiceFour: "-",
     search: "room-2-treasure",
+    search: "room-2-treasure",
   },
   {
     //questLog[7] - If straight at questLog[4] and encounter monster
@@ -105,6 +112,7 @@ const questLog = [
     choiceTwo: "Heal",
     choiceThree: "-",
     choiceFour: "-",
+    search: "room-3-monster",
     search: "room-3-monster",
   },
   {
@@ -115,8 +123,17 @@ const questLog = [
     choiceThree: "-",
     choiceFour: "-",
     search: "room-3-treasure",
+    search: "room-3-treasure",
   },
 ];
+
+///////////////////////////////////////////////////////////////////
+function findIndex(x) {
+  const index = questLog.map((i) => i.search).indexOf(x);
+  return index;
+}
+console.log(findIndex("dungeon-start"));
+////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////
 function findIndex(x) {
