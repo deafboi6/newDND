@@ -18,6 +18,15 @@ const answerThreeEl = document.querySelector("#choice-three");
 const answerFourEl = document.querySelector("#choice-four");
 const mapEl = document.querySelector("#dungeon-map");
 
+// Hooks to the UI
+const answerButtonsEl = document.querySelector(".choiceButtons");
+const questionTextEl = document.querySelector("#question-text");
+const answerOneEl = document.querySelector("#choice-one");
+const answerTwoEl = document.querySelector("#choice-two");
+const answerThreeEl = document.querySelector("#choice-three");
+const answerFourEl = document.querySelector("#choice-four");
+const mapEl = document.querySelector("#dungeon-map");
+
 
 
 // Initialize hero stats before they are pulled from db fetch
@@ -82,6 +91,10 @@ const questLog = [
     choiceTwo: "North",
     choiceThree: "East",
     choiceFour: "South",
+    choiceOne: "Left",
+    choiceTwo: "Straight",
+    choiceThree: "-",
+    choiceFour: "-",
     search: "main-crossing",
   },
   {
