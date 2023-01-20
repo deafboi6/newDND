@@ -34,7 +34,7 @@ rndEnemy.intelligence = 20; // pulled from API
 // }
 
 var userAttck = function(){
-    remainHp=rndEnemy.hp-userCreated.strength;
+    var remainHp=rndEnemy.hp-userCreated.strength;
     rndEnemy.hp=remainHp;
     if(rndEnemy.hp<1){
         alert("Great Job!, You have vanquished the Enemy!")
@@ -44,7 +44,7 @@ var userAttck = function(){
 }
 
 var enemyAttck = function(){
-    remainHp=userCreated.hp-rndEnemy.strength;
+    var remainHp=userCreated.hp-rndEnemy.strength;
     userCreated.hp=remainHp;
     if(userCreated.hp<1){
         alert("You have been Slain!, Please begin your Adventure Again!")

@@ -2,10 +2,16 @@ const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
 // JS file to create Category Model
-class Monster extends Model{}
+class Monster extends Model {}
 
-Category.init({
-
+Monster.init(
+  {
+    id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true,
+      },
     monster_name:{
         type:DataTypes.STRING,
         allowNull:false
@@ -49,6 +55,11 @@ Category.init({
 },
 {
     sequelize,
-});
+    timestamps: false,
+    freezeTableName: true,
+    underscored: true,
+    modelName: "monster",
+}
+);
 
-module.exports=Monster
+module.exports = Monster;
