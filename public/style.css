@@ -1,0 +1,40 @@
+* {
+    font-family: fantasy;
+}
+
+body {
+    padding: 1rem;
+    background: rgb(218, 214, 214);
+    animation-name: logincard;
+    animation-duration: 7s;
+}
+
+nav {
+    text-align: center;
+}
+
+
+a:-webkit-any-link {
+    color: aliceblue;
+    font-size: x-large;
+    text-decoration: line-through;
+    line-height: 50px;
+}
+
+a:-webkit-any-link:hover {
+    color: rgb(16, 15, 15);
+    text-decoration: double;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+}
+
+.login-card {
+    text-align: center;
+}
+
+main {
+    text-align: center;
+}
