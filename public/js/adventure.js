@@ -1,11 +1,13 @@
+// character heals 50 points from the treasure
+
 // Hooks to the UI
-var answerButtonsEl = document.querySelector(".choiceButtons");
-var questionTextEl = document.querySelector("#question-text");
-var answerOneEl = document.querySelector("#choice-one");
-var answerTwoEl = document.querySelector("#choice-two");
-var answerThreeEl = document.querySelector("#choice-three");
-var answerFourEl = document.querySelector("#choice-four");
-var mapEl = document.querySelector("#dungeon-map");
+const answerButtonsEl = document.querySelector(".choiceButtons");
+const questionTextEl = document.querySelector("#question-text");
+const answerOneEl = document.querySelector("#choice-one");
+const answerTwoEl = document.querySelector("#choice-two");
+const answerThreeEl = document.querySelector("#choice-three");
+const answerFourEl = document.querySelector("#choice-four");
+const mapEl = document.querySelector("#dungeon-map");
 
 const Challenge = [5,10,15]
 const x = Math.floor(Math.random() * 3);
@@ -24,11 +26,11 @@ var monsterDexterity = 0;
 var monsterIntelligence = 0;
 
 //Quest state variable
-var questProgress = 0;
-var randomEncounter = 0;
+let questProgress = 0;
+let randomEncounter = 0;
 
 // Basic adventure options
-var questLog = [
+const questLog = [
   {
     //questLog[0]
     question: "You've entered a dungon... There's a [monster] ahead.",
@@ -36,6 +38,7 @@ var questLog = [
     choiceTwo: "Heal",
     choiceThree: "-",
     choiceFour: "-",
+    search: "dungeon-start",
   },
   {
     //questLog[1]
@@ -44,6 +47,7 @@ var questLog = [
     choiceTwo: "Straight",
     choiceThree: "-",
     choiceFour: "-",
+    search: "boss-1-defeated",
   },
   {
     //questLog[2] - if encounter monster
@@ -52,6 +56,7 @@ var questLog = [
     choiceTwo: "Heal",
     choiceThree: "-",
     choiceFour: "-",
+    search: "room-4-monster",
   },
   {
     //questLog[3] - if find treasure
@@ -60,6 +65,7 @@ var questLog = [
     choiceTwo: "-",
     choiceThree: "-",
     choiceFour: "-",
+    search: "room-4-treasure",
   },
   {
     //questLog[4] - if left at questLog[1]
@@ -68,6 +74,7 @@ var questLog = [
     choiceTwo: "Straight",
     choiceThree: "-",
     choiceFour: "-",
+    search: "main-crossing",
   },
   {
     //questLog[5] - If left at questLog[4] and encounter monster
@@ -76,6 +83,7 @@ var questLog = [
     choiceTwo: "Heal",
     choiceThree: "-",
     choiceFour: "-",
+    search: "room-2-monster",
   },
   {
     //questLog[6] - If left at questLog[4] and find treasure
@@ -84,6 +92,7 @@ var questLog = [
     choiceTwo: "-",
     choiceThree: "-",
     choiceFour: "-",
+    search: "room-2-treasure",
   },
   {
     //questLog[7] - If straight at questLog[4] and encounter monster
@@ -92,6 +101,7 @@ var questLog = [
     choiceTwo: "Heal",
     choiceThree: "-",
     choiceFour: "-",
+    search: "room-3-monster",
   },
   {
     //questLog[8] - If straight at questLog[4] and find treasure
@@ -100,8 +110,17 @@ var questLog = [
     choiceTwo: "-",
     choiceThree: "-",
     choiceFour: "-",
+    search: "room-3-treasure",
   },
 ];
+
+///////////////////////////////////////////////////////////////////
+function findIndex(x) {
+  const index = questLog.map((i) => i.search).indexOf(x);
+  return index;
+}
+console.log(findIndex("dungeon-start"));
+////////////////////////////////////////////////////////////////////
 
 // used in get request to look up the hero's initial stats
 const id = window.location.toString().split("/")[window.location.toString().split("/").length - 1];
@@ -216,7 +235,7 @@ function handleChoice() {
   console.log(selectedChoice);
   // first enemy encounter at the start of the dungeon
   if (questProgress === 0) {
-    questProgress = 1;
+    questProgress = findIndex("boss-1-defeated");
     renderAdventure();
     // first hallway after the boss
   } else if (questProgress === 1) {
