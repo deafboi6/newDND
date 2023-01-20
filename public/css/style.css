@@ -34,3 +34,24 @@ button {
   border-radius: 5px;
 }
 
+/* Tablets */
+@media screen and (max-width: 992px) {
+  body {
+    background:rgb(128, 114, 114);
+  }
+}
+
+/* Large Smartphones */
+@media screen and (max-width: 768px) {
+    body {
+      background:rgb(128, 114, 114);
+    }
+}
+
+/* Small Smartphones */
+@media screen and (max-width:576px) {
+  body {
+    background:rgb(128, 114, 114)
+  }
+}
+
