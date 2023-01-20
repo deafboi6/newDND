@@ -1,4 +1,16 @@
 // character heals 50 points from the treasure
+<<<<<<< HEAD
+=======
+
+// Hooks to the UI
+const answerButtonsEl = document.querySelector(".choiceButtons");
+const questionTextEl = document.querySelector("#question-text");
+const answerOneEl = document.querySelector("#choice-one");
+const answerTwoEl = document.querySelector("#choice-two");
+const answerThreeEl = document.querySelector("#choice-three");
+const answerFourEl = document.querySelector("#choice-four");
+const mapEl = document.querySelector("#dungeon-map");
+>>>>>>> b78a3e7 (stash)
 
 // character heals 50 points from the treasure
 
@@ -82,14 +94,23 @@ const questLog = [
   {
     //questLog[4] - if left at questLog[1]
     question: "You turned left. You can go left or straight. What do you do?",
+<<<<<<< HEAD
     choiceOne: "West",
     choiceTwo: "North",
     choiceThree: "East",
     choiceFour: "South",
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 6469e96 (stash)
     choiceOne: "Left",
     choiceTwo: "Straight",
     choiceThree: "-",
     choiceFour: "-",
+<<<<<<< HEAD
+=======
+>>>>>>> b78a3e7 (stash)
+>>>>>>> 6469e96 (stash)
     search: "main-crossing",
   },
   {
