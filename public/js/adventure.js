@@ -9,14 +9,6 @@ const answerThreeEl = document.querySelector("#choice-three");
 const answerFourEl = document.querySelector("#choice-four");
 const mapEl = document.querySelector("#dungeon-map");
 
-// Hooks to the UI
-const answerButtonsEl = document.querySelector(".choiceButtons");
-const questionTextEl = document.querySelector("#question-text");
-const answerOneEl = document.querySelector("#choice-one");
-const answerTwoEl = document.querySelector("#choice-two");
-const answerThreeEl = document.querySelector("#choice-three");
-const answerFourEl = document.querySelector("#choice-four");
-const mapEl = document.querySelector("#dungeon-map");
 
 const Challenge = [5, 10, 15];
 const x = Math.floor(Math.random() * 3);

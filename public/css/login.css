@@ -70,4 +70,69 @@ cursor: /* Start https://www.cursors-4u.com */url(https://cur.cursors-4u.net/gam
     from {background-color: red;}
     to {background-color: black;}
     to {background-color: rgb(218, 214, 214);}
-}
+ }
+ 
+ h1 {
+     font-size: 75px;
+     margin-top: 100px;
+     border: #f00;
+     border-style: double;
+     border-width: medium;
+     border-radius: 50px;
+     border-collapse: inherit;
+     border-top: #f00;
+     text-align: center;
+     color: white;
+     transition: 5s;
+     -webkit-transition: all 3s ease-in;
+     -moz-transition: all 3s ease-in;
+     -o-transition: all 15s ease-in;
+     text-shadow: 8px 8px 4px #f00;
+   }
+ 
+ button {
+     border: 0;
+     padding: 1%;
+     font-weight: bold;
+     transition: background-color .1s;
+     border-radius: 5px;
+ cursor: /* Start https://www.cursors-4u.com */url(https://cur.cursors-4u.net/games/gam-11/gam1078.ani), url(https://cur.cursors-4u.net/games/gam-11/gam1078.png), auto !important; /* End https://www.cursors-4u.com */
+ }  
+ 
+ .login-card {
+     width: 50%;
+     box-shadow: 0 4px 8px 0 rgba(240, 237, 237, 0.743), 0 6px 20px 0 rgba(224, 193, 193, 0.241);
+     text-align: center;
+     object-position: center;
+     margin: auto;
+     animation: fadeIn 10s;
+     -webkit-animation: fadeIn 10s;
+     -moz-animation: fadeIn 10s;
+     -o-animation: fadeIn 10s;   
+     -ms-animation: fadeIn 10s;
+ }
+ 
+ @keyframes fadeIn {
+     0% { opacity: 0; }
+     100% { opacity: 1;}
+ }
+ 
+ @-moz-keyframes fadeIn {
+     0% { opacity: 0; }
+     100% { opacity: 1;}
+ }
+ 
+ @-webkit-keyframes fadeIn {
+     0% { opacity: 0; }
+     100% { opacity: 1;}
+ }
+ 
+ @-o-keyframes fadeIn {
+     0% { opacity: 0; }
+     100% { opacity: 1;}
+ }
+ 
+ @-ms-keyframes fadeIn {
+     0% { opacity: 0; }
+     100% { opacity: 1;}
+ }
