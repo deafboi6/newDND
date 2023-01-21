@@ -1,11 +1,1 @@
-body {
-    padding: 1rem;
-    animation-name: logincard;
-    animation-duration: 7s;
-}
-
-@keyframes logincard {
-    from {background-color: red;}
-    to {background-color: black;}
-    to {background-color: rgb(218, 214, 214);}
-}
+/* supposed to be empty -Arturo */
