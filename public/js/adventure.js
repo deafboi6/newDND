@@ -25,6 +25,8 @@ var monsterStrength = 0;
 var monsterDexterity = 0;
 var monsterIntelligence = 0;
 
+var monsterIndex = [];
+
 //Quest state variable
 let questProgress = 0;
 let randomEncounter = 0;
@@ -32,8 +34,8 @@ let randomEncounter = 0;
 // Basic adventure options
 const questLog = [
   {
-    //questLog[0]
-    question: "You've entered a dungon... There's a [monster] ahead.",
+    // Dungeon start
+    question: "You've entered a dungon... There's a monster ahead.",
     choiceOne: "Fight",
     choiceTwo: "Heal",
     choiceThree: "-",
@@ -41,17 +43,17 @@ const questLog = [
     search: "dungeon-start",
   },
   {
-    //questLog[1]
-    question: "You survived the fight. You can now head down a hall and come to a fork. You can proceed turn left or go straight. What do you want to do?",
+    // First hall crossing
+    question: "You continue down the hall. Which direction do you go next?",
     choiceOne: "North",
     choiceTwo: "East",
     choiceThree: "-",
     choiceFour: "-",
-    search: "boss-1-defeated",
+    search: "first-crossing",
   },
   {
-    //questLog[2] - if encounter monster
-    question: "You go straight. A [monster] appears. What do you do?",
+    // Room 4 (bottom right corner) if monster is encountered
+    question: "You continue down the hall and enter the room. A monster appears!",
     choiceOne: "Fight",
     choiceTwo: "Heal",
     choiceThree: "-",
@@ -59,8 +61,8 @@ const questLog = [
     search: "room-4-monster",
   },
   {
-    //questLog[3] - if find treasure
-    question: "You go straight. The room is clear for danger, but you find treasure!",
+    // Room 4 (bottom right corner) if treasure is found
+    question: "You continue down the hall and enter the room. This room is clear of danger. You find treasure!",
     choiceOne: "Collect Treasure",
     choiceTwo: "-",
     choiceThree: "-",
@@ -68,8 +70,26 @@ const questLog = [
     search: "room-4-treasure",
   },
   {
-    //questLog[4] - if left at questLog[1]
-    question: "You turned left. You can go left or straight. What do you do?",
+    // Room 4 (bottom right corner) after treasure is collected
+    question: "You finished collecting your treasure, which way do you go next?",
+    choiceOne: "West",
+    choiceTwo: "North",
+    choiceThree: "-",
+    choiceFour: "-",
+    search: "room-4-treasure-collected",
+  },
+  {
+    // Last hall crossing next to final boss room
+    question: "You continue down the hall. Which direction do you go next?",
+    choiceOne: "West",
+    choiceTwo: "South",
+    choiceThree: "East",
+    choiceFour: "-",
+    search: "final-crossing",
+  },
+  {
+    // Main path crossing in the middle
+    question: "You stand at the middle of a hall with paths branching in all directions. Which direction do you go next?",
     choiceOne: "West",
     choiceTwo: "North",
     choiceThree: "East",
@@ -77,8 +97,8 @@ const questLog = [
     search: "main-crossing",
   },
   {
-    //questLog[5] - If left at questLog[4] and encounter monster
-    question: "You go left. A [monster] appears. What do you do?",
+    // Room 2 (western) if monster is encountered
+    question: "You head down to the end of the western hall and enter the room. A monster appears!",
     choiceOne: "Fight",
     choiceTwo: "Heal",
     choiceThree: "-",
@@ -86,8 +106,8 @@ const questLog = [
     search: "room-2-monster",
   },
   {
-    //questLog[6] - If left at questLog[4] and find treasure
-    question: "You go left. The room is clear for danger, but you find treasure!",
+    // Room 2 (western) if treasure is found
+    question: "You head down to the end of the western hall and enter the room. The room is clear of danger. You find treasure!",
     choiceOne: "Collect Treasure",
     choiceTwo: "-",
     choiceThree: "-",
@@ -95,8 +115,8 @@ const questLog = [
     search: "room-2-treasure",
   },
   {
-    //questLog[7] - If straight at questLog[4] and encounter monster
-    question: "You go straight. A [monster] appears. What do you do?",
+    // Room 3 (northern) if monster is encountered
+    question: "You head down to the end of the northern hall and enter the room. A monster appears!",
     choiceOne: "Fight",
     choiceTwo: "Heal",
     choiceThree: "-",
@@ -104,8 +124,8 @@ const questLog = [
     search: "room-3-monster",
   },
   {
-    //questLog[8] - If straight at questLog[4] and find treasure
-    question: "You go straight. The room is clear for danger, but you find treasure!",
+    // Room 3 (northern) if treasure is found
+    question: "You head to the end of the northern hallway and enter the room. The room is clear of danger. You find treasure!",
     choiceOne: "Collect Treasure",
     choiceTwo: "-",
     choiceThree: "-",
@@ -137,25 +157,24 @@ const getHero = () =>
       console.error("Error:", error);
     });
 
-function getEnemy() {
+async function getEnemy() {
   var API = "https://www.dnd5eapi.co/api/monsters/?challenge_rating=" + Challenge[x];
 
-  fetch(API)
+  await fetch(API)
     .then(async function (response) {
       return response.json();
     })
-
-    .then(function (data) {
+    .then(async function (data) {
       console.log(data);
       var numMonster = data.count;
-      var monsterIndex = [];
+      // var monsterIndex = [];
       for (let i = 0; i < numMonster; i++) {
         var newMonster = data.results[i].index;
         monsterIndex.push(newMonster);
       }
       var y = Math.floor(Math.random() * data.count);
       singleAPI = "https://www.dnd5eapi.co/api/monsters/" + monsterIndex[y];
-      fetch(singleAPI)
+      await fetch(singleAPI)
         .then(async function (response) {
           return response.json();
         })
@@ -164,12 +183,21 @@ function getEnemy() {
           monsterLife = data.hit_points;
           monsterStrength = data.strength;
           monsterDexterity = data.dexterity;
-          monsterIntelligemce = data.intelligence;
-          console.log(monsterName, monsterLife, monsterStrength, monsterDexterity, monsterIntelligemce);
+          monsterIntelligence = data.intelligence;
+          console.log(monsterName, monsterLife, monsterStrength, monsterDexterity, monsterIntelligence);
         });
       // console.log(monsterName,monsterLife,monsterStrength,monsterDexterity,monsterIntelligemce);
-      console.log("monsterIndex: ", monsterIndex[0]);
+      updateQuestLog();
+      renderAdventure();
     });
+}
+
+// Update question text with monsters from API
+function updateQuestLog() {
+  questLog[findIndex("dungeon-start")].question = `You've entered a dungon... There's a ${monsterIndex[0]} ahead!`;
+  questLog[findIndex("room-2-monster")].question = `You head to the end of the western hall and enter the room. A ${monsterIndex[1]} appears!`;
+  questLog[findIndex("room-3-monster")].question = `You head to the end of the northern hall and enter the room. A ${monsterIndex[2]} appears!`;
+  questLog[findIndex("room-4-monster")].question = `You continue down the hall and enter the room. A ${monsterIndex[3]} appears!`;
 }
 
 // This is our init function to start the game and call the function to get the Hero's initial stats.
@@ -186,20 +214,19 @@ const startGame = async () => {
   console.log("Enemy Strength: ", monsterStrength);
   console.log("Enemy Dexterity: ", monsterDexterity);
   console.log("Enemy Intelligence: ", monsterIntelligence);
-  renderAdventure();
 };
 
 // renders the question and button text on the front end based on the array and quest progress value
 function renderAdventure() {
   //set background images
-  if (questProgress === findIndex("boss-1-defeated")) {
-    mapEl.src = "https://res.cloudinary.com/dfyvcni4b/image/upload/v1674013845/newDND/First_room_selection_option_gqd5aw.jpg";
+  if (questProgress === findIndex("first-crossing")) {
+    mapEl.src = "https://res.cloudinary.com/dfyvcni4b/image/upload/v1674191722/newDND/hero_in_bottom_hallway_ta05ye.jpg";
   } else if (questProgress === findIndex("room-4-monster")) {
     mapEl.src = "https://res.cloudinary.com/dfyvcni4b/image/upload/v1674013842/newDND/Blue_route_monster_te1lur.jpg";
   } else if (questProgress === findIndex("room-4-treasure")) {
     mapEl.src = "https://res.cloudinary.com/dfyvcni4b/image/upload/v1674013842/newDND/Blue_route_chest_jmvkdy.jpg";
   } else if (questProgress === findIndex("main-crossing")) {
-    mapEl.src = "https://res.cloudinary.com/dfyvcni4b/image/upload/v1674013840/newDND/1st_red_route_--room_selection_aqa3uj.jpg";
+    mapEl.src = "https://res.cloudinary.com/dfyvcni4b/image/upload/v1674191722/newDND/hero_in_hallway_votxhf.jpg";
   } else if (questProgress === findIndex("room-2-monster")) {
     mapEl.src = "https://res.cloudinary.com/dfyvcni4b/image/upload/v1674013840/newDND/2nd_red_route_monster_kesar5.jpg";
   } else if (questProgress === findIndex("room-2-treasure")) {
@@ -208,6 +235,8 @@ function renderAdventure() {
     mapEl.src = "https://res.cloudinary.com/dfyvcni4b/image/upload/v1674013840/newDND/2nd_blue_route_monster_wt4bwq.jpg";
   } else if (questProgress === findIndex("room-3-treasure")) {
     mapEl.src = "https://res.cloudinary.com/dfyvcni4b/image/upload/v1674013840/newDND/2nd_blue_route_chest_yncfwd.jpg";
+  } else if (questProgress === findIndex("final-crossing")) {
+    mapEl.src = "https://res.cloudinary.com/dfyvcni4b/image/upload/v1674191722/newDND/hero_in_right_hallway_dxe5g4.jpg";
   }
 
   // set the question and button text
@@ -232,10 +261,10 @@ function handleChoice() {
   console.log(selectedChoice);
   // first enemy encounter at the start of the dungeon
   if (questProgress === 0) {
-    questProgress = findIndex("boss-1-defeated");
+    questProgress = findIndex("first-crossing");
     renderAdventure();
     // first hallway after the boss
-  } else if (questProgress === findIndex("boss-1-defeated")) {
+  } else if (questProgress === findIndex("first-crossing")) {
     // player chooses north
     if (selectedChoice === "choice-one") {
       questProgress = findIndex("main-crossing");
@@ -252,6 +281,19 @@ function handleChoice() {
         questProgress = findIndex("room-4-treasure");
         renderAdventure();
       }
+    }
+  } else if (questProgress === findIndex("room-4-treasure")) {
+    if (selectedChoice === "choice-one") {
+      questProgress = findIndex("room-4-treasure-collected");
+      renderAdventure();
+    }
+  } else if (questProgress === findIndex("room-4-treasure-collected")) {
+    if (selectedChoice === "choice-one") {
+      questProgress = findIndex("first-crossing");
+      renderAdventure();
+    } else {
+      questProgress = findIndex("final-crossing");
+      renderAdventure();
     }
   } else if (questProgress === findIndex("main-crossing")) {
     // player chooses west
