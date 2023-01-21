@@ -1,7 +1,14 @@
-<div>
-  <p>Name: {{name}}</p>
-  <p>Attack: {{attack}}</p>
-  <p>Hit Points: {{hitPoints}}</p>
-  <p>Mana: {{mana}}</p>
-  <a href="/api/adventure/{{id}}">Choose Hero</a>
+<link rel="stylesheet" href="/css/herocard.css">
+<div class="container">
+
+   <img src="https://i.ibb.co/dGZKPXT/IMG-6183.png" alt="IMG-6183" border="0">
+
+  <p class="name">Name: {{name}}</p>
+  <p class="attack">Attack: {{attack}}</p>
+  <p class="hitpoints">Hit Points: {{hitPoints}}</p>
+  <p class="mana">Mana: {{mana}}</p>
 </div>
+
+<h4>
+   <a class="Hero" href="/api/adventure/{{id}}">Choose Hero</a>
+</h4>
