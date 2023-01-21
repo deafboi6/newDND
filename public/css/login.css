@@ -2,7 +2,14 @@
    cursor: /* Start https://www.cursors-4u.com */url(https://cur.cursors-4u.net/games/gam-11/gam1078.ani), url(https://cur.cursors-4u.net/games/gam-11/gam1078.png), auto !important; /* End https://www.cursors-4u.com */
 }
 
+<<<<<<< HEAD
 
+=======
+@keyframes logincard {
+    from {background-color: red;}
+    to {background-color: black;}
+    to {background-color: rgb(218, 214, 214);}
+>>>>>>> 7c27c4b (resolved conflicts)
 h1 {
     font-size: 75px;
     margin-top: 100px;
@@ -67,10 +74,13 @@ cursor: /* Start https://www.cursors-4u.com */url(https://cur.cursors-4u.net/gam
     0% { opacity: 0; }
     100% { opacity: 1;}
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 
 =======
 >>>>>>> 023dd67 (added styles to homepage/login/herocard)
+=======
+>>>>>>> 7c27c4b (resolved conflicts)
 }
 >>>>>>> 4af2f37 (stash)
 @keyframes logincard {
