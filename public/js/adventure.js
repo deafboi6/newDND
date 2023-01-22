@@ -1,5 +1,3 @@
-// character heals 50 points from the treasure
-
 // Hooks to the UI
 const answerButtonsEl = document.querySelector(".choiceButtons");
 const questionTextEl = document.querySelector("#question-text");
@@ -42,7 +40,7 @@ const questLog = [
     // Dungeon start
     question: "You've entered a dungon... There's a monster ahead.",
     choiceOne: "Fight",
-    choiceTwo: "Heal",
+    choiceTwo: "-",
     choiceThree: "-",
     choiceFour: "-",
     search: "dungeon-start",
@@ -105,7 +103,7 @@ const questLog = [
     // Room 2 (western) if monster is encountered
     question: "You head down to the end of the western hall and enter the room. A monster appears!",
     choiceOne: "Fight",
-    choiceTwo: "Heal",
+    choiceTwo: "-",
     choiceThree: "-",
     choiceFour: "-",
     search: "room-2-monster",
@@ -150,7 +148,7 @@ const questLog = [
     // Room 3 (northern) if monster is encountered
     question: "You head down to the end of the northern hall and enter the room. A monster appears!",
     choiceOne: "Fight",
-    choiceTwo: "Heal",
+    choiceTwo: "-",
     choiceThree: "-",
     choiceFour: "-",
     search: "room-3-monster",
@@ -195,7 +193,7 @@ const questLog = [
     // Room 4 (bottom right corner) if monster is encountered
     question: "You continue down the hall and enter the room. A monster appears!",
     choiceOne: "Fight",
-    choiceTwo: "Heal",
+    choiceTwo: "-",
     choiceThree: "-",
     choiceFour: "-",
     search: "room-4-monster",
@@ -249,7 +247,7 @@ const questLog = [
     // Room 5 (final room) monster
     question: "You continue down the hall and enter the room. A monster appears!",
     choiceOne: "Fight",
-    choiceTwo: "Heal",
+    choiceTwo: "-",
     choiceThree: "-",
     choiceFour: "-",
     search: "room-5-monster",
@@ -379,13 +377,6 @@ function renderAdventure() {
   answerTwoEl.textContent = questLog[questProgress].choiceTwo;
   answerThreeEl.textContent = questLog[questProgress].choiceThree;
   answerFourEl.textContent = questLog[questProgress].choiceFour;
-
-  console.log("questProgress: ", questLog[questProgress].search);
-  console.log("room1Complete: ", room1Complete);
-  console.log("room2Complete: ", room2Complete);
-  console.log("room3Complete: ", room3Complete);
-  console.log("room4Complete: ", room4Complete);
-  console.log("room5Complete: ", room5Complete);
 }
 
 // Helper functions
@@ -398,7 +389,6 @@ function findIndex(x) {
 }
 
 function handleChoice() {
-  console.log("selectedChoice: ", selectedChoice);
   /////////////////////////////////////////////////////
   // DUNGEON START
   /////////////////////////////////////////////////////
@@ -428,8 +418,9 @@ function handleChoice() {
     else if (selectedChoice === "choice-two") {
       questProgress = findIndex("main-crossing");
       renderAdventure();
-      // player chooses east and has 50/50 chance of treasure vs monster
-    } else if (selectedChoice === "choice-three") {
+    }
+    // player chooses east and has 50/50 chance of treasure vs monster
+    else if (selectedChoice === "choice-three") {
       if (room4Complete) {
         questProgress = findIndex("room-4-cleared-first");
         renderAdventure();
@@ -446,13 +437,15 @@ function handleChoice() {
         }
       }
     }
-  } // If room 1 is cleared, return back to first crossing screen
+  }
+  // If room 1 is cleared, return back to first crossing screen
   else if (questProgress === findIndex("room-1-cleared")) {
     if (selectedChoice === "choice-one") {
       questProgress = findIndex("first-crossing");
       renderAdventure();
     }
-  } // If room 4 is cleared, return back to first crossing screen
+  }
+  // If room 4 is cleared, return back to first crossing screen
   else if (questProgress === findIndex("room-4-cleared-first")) {
     if (selectedChoice === "choice-one") {
       questProgress = findIndex("first-crossing");
@@ -481,12 +474,16 @@ function handleChoice() {
           renderAdventure();
         }
       }
-      // player chooses north and has 50/50 chance of treasure vs monster
-    } else if (selectedChoice === "choice-two") {
+    }
+    // player chooses north and has 50/50 chance of treasure vs monster
+    else if (selectedChoice === "choice-two") {
+      // checks if room is already cleared
       if (room3Complete) {
         questProgress = findIndex("room-3-cleared");
         renderAdventure();
-      } else {
+      }
+      // if room is not cleared
+      else {
         randomEncounter = getRandomInt(2);
         if (randomEncounter === 0) {
           //Encounter monster
@@ -498,10 +495,14 @@ function handleChoice() {
           renderAdventure();
         }
       }
-    } else if (selectedChoice === "choice-three") {
+    }
+    // player chooses east
+    else if (selectedChoice === "choice-three") {
       questProgress = findIndex("final-crossing");
       renderAdventure();
-    } else if (selectedChoice === "choice-four") {
+    }
+    // player chooses south
+    else if (selectedChoice === "choice-four") {
       questProgress = findIndex("first-crossing");
       renderAdventure();
     }
@@ -545,7 +546,10 @@ function handleChoice() {
           renderAdventure();
         }
       }
-    } else if (selectedChoice === "choice-three") {
+    }
+    // player chooses east
+    else if (selectedChoice === "choice-three") {
+      // require all rooms being complete before entering the final boss room
       if (room1Complete && room2Complete && room3Complete && room4Complete) {
         questProgress = findIndex("room-5-monster");
         renderAdventure();
@@ -554,20 +558,16 @@ function handleChoice() {
         renderAdventure();
       }
     }
-  } // If not ready to take on the final boss
-  else if (questProgress === findIndex("boss-room-not-ready")) {
-    if (selectedChoice === "choice-one") {
-      questProgress = findIndex("final-crossing");
-      renderAdventure();
-    }
   }
-  // If room 4 is cleared, return back to main crossing screen
+  // If room 4 is cleared, return back to final crossing screen
   else if (questProgress === findIndex("room-4-cleared-final")) {
     if (selectedChoice === "choice-one") {
       questProgress = findIndex("final-crossing");
       renderAdventure();
     }
-  } else if (questProgress === findIndex("boss-room-not-ready")) {
+  }
+  // If player tries to enter the boss room when they haven't cleared all other rooms yet
+  else if (questProgress === findIndex("boss-room-not-ready")) {
     if (selectedChoice === "choice-one") {
       questProgress = findIndex("final-crossing");
       renderAdventure();
@@ -582,7 +582,8 @@ function handleChoice() {
       questProgress = findIndex("room-2-monster-defeated");
       renderAdventure();
     }
-  } // Room 2 after fight with monster
+  }
+  // Room 2 after fight with monster
   else if (questProgress === findIndex("room-2-monster-defeated")) {
     if (selectedChoice === "choice-one") {
       // will prevent the player from returning to this room
@@ -590,13 +591,15 @@ function handleChoice() {
       questProgress = findIndex("main-crossing");
       renderAdventure();
     }
-  } // Room 2 after treasure collected
+  }
+  // Room 2 treasure collected
   else if (questProgress === findIndex("room-2-treasure")) {
     if (selectedChoice === "choice-one") {
       questProgress = findIndex("room-2-treasure-collected");
       renderAdventure();
     }
-  } // Room 2 after treasure collected
+  }
+  // Room 2 after treasure collected
   else if (questProgress === findIndex("room-2-treasure-collected")) {
     if (selectedChoice === "choice-one") {
       // will prevent the player from returning to this room
@@ -622,13 +625,15 @@ function handleChoice() {
       questProgress = findIndex("main-crossing");
       renderAdventure();
     }
-  } // Room 3 after treasure collected
+  }
+  // Room 3  treasure collected
   else if (questProgress === findIndex("room-3-treasure")) {
     if (selectedChoice === "choice-one") {
       questProgress = findIndex("room-3-treasure-collected");
       renderAdventure();
     }
-  } // Room 3 after treasure collected
+  }
+  // Room 3 after treasure collected
   else if (questProgress === findIndex("room-3-treasure-collected")) {
     if (selectedChoice === "choice-one") {
       // will prevent the player from returning to this room
@@ -640,24 +645,28 @@ function handleChoice() {
   /////////////////////////////////////////////////////
   // ROOM 4
   /////////////////////////////////////////////////////
-  // Room 4 fight with monster
+  // Room 4 if fight with monster
   else if (questProgress === findIndex("room-4-monster")) {
     if (selectedChoice === "choice-one") {
       questProgress = findIndex("room-4-monster-defeated");
       renderAdventure();
     }
-  } // Room 4 after fight with monster
+  }
+  // Room 4 after fight with monster
   else if (questProgress === findIndex("room-4-monster-defeated")) {
     if (selectedChoice === "choice-one") {
+      // will prevent the player from returning to this room
       room4Complete = true;
       questProgress = findIndex("first-crossing");
       renderAdventure();
     } else {
+      // will prevent the player from returning to this room
       room4Complete = true;
       questProgress = findIndex("final-crossing");
       renderAdventure();
     }
-  } // Room 4 collect treasure
+  }
+  // Room 4 collect treasure
   else if (questProgress === findIndex("room-4-treasure")) {
     if (selectedChoice === "choice-one") {
       questProgress = findIndex("room-4-treasure-collected");
@@ -666,10 +675,12 @@ function handleChoice() {
   } // Room 4 after treasure collected
   else if (questProgress === findIndex("room-4-treasure-collected")) {
     if (selectedChoice === "choice-one") {
+      // will prevent the player from returning to this room
       room4Complete = true;
       questProgress = findIndex("first-crossing");
       renderAdventure();
     } else {
+      // will prevent the player from returning to this room
       room4Complete = true;
       questProgress = findIndex("final-crossing");
       renderAdventure();
@@ -678,7 +689,7 @@ function handleChoice() {
   /////////////////////////////////////////////////////
   // ROOM 5
   /////////////////////////////////////////////////////
-  // Room 4 fight with monster
+  // Room 5 fight with monster
   else if (questProgress === findIndex("room-5-monster")) {
     if (selectedChoice === "choice-one") {
       questProgress = findIndex("room-5-monster-defeated");
