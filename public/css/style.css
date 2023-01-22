@@ -3,15 +3,101 @@
 }
 
 * {
-  box-sizing: border-box;
+  font-family: fantasy;
+  cursor:/* Start https://www.cursors-4u.com */url(https://cur.cursors-4u.net/games/gam-11/gam1078.ani), url(https://cur.cursors-4u.net/games/gam-11/gam1078.png), auto !important; /* End https://www.cursors-4u.com */
 }
 
-body, html {
-  height: 100%;
-  padding: 0;
-  margin: 0;
-  font-family: sans-serif;
-  color: rgb(128, 114, 114)
+body {
+  padding: 1rem;
+  background: rgb(36, 35, 35);
+  animation-name: logincard;
+  animation-duration: 7s;
+}
+
+nav {
+  list-style-type: none;
+  text-align: center;
+}
+
+a {
+  padding: 8px 16px;
+}
+
+
+a:-webkit-any-link {
+  color: aliceblue;
+  font-size: 40px;
+  text-decoration: line-through;
+  line-height: 50px;
+  text-shadow: 0 0 3px #f00;
+}
+
+a:-webkit-any-link:hover {
+  color: rgb(16, 15, 15);
+  text-decoration: double;
+}
+
+header {
+  box-shadow: rgb(109, 53, 53);
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  margin-top: 400px;
+  font-size: 75px;
+  border: #f00;
+  border-style: double;
+  border-width: medium;
+  border-radius: 50px;
+  border-collapse: inherit;
+  border-top: #f00;
+  text-align: center;
+  color: white;
+  transition: all 3s ease-in-out;
+  -webkit-transition: all 3s ease-in-out;
+  -moz-transition: all 3s ease-in-out;
+  -o-transition: all 15s ease-in-out;
+  text-shadow: 8px 8px 4px #f00;
+}
+
+.login-card {
+  text-align: center;
+  animation: ease-in 5s;
+  color: white;
+  text-shadow: 0 0 3px #f00;
+}
+
+main {
+  text-align: center;
+}
+
+/* Tablets */
+@media screen and (max-width: 992px) {
+  body {
+    background:rgb(128, 114, 114);
+  }
+}
+
+/* Large Smartphones */
+@media screen and (max-width: 768px) {
+    body {
+      background:rgb(128, 114, 114);
+    }
+}
+
+/* Small Smartphones */
+@media screen and (max-width:576px) {
+  body {
+    background:rgb(128, 114, 114)
+  }
+}
+
+h2 {
+  color: aliceblue;
+  font-size: large;
+  line-height: 50px;
+  text-shadow: 0 0 3px #f00;
 }
 
 
@@ -24,13 +110,3 @@ a {
 a:hover {
   color: #53667e;
 }
-
-button {
-  border: 0;
-  padding: 1%;
-  font-weight: bold;
-  transition: background-color .1s;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
