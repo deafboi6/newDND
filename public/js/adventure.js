@@ -1,3 +1,4 @@
+
 // Hooks to the UI
 const answerButtonsEl = document.querySelector(".choiceButtons");
 const questionTextEl = document.querySelector("#question-text");
@@ -9,7 +10,6 @@ const mapEl = document.querySelector("#dungeon-map");
 
 const Challenge = [5, 10, 15];
 const x = Math.floor(Math.random() * 3);
-var API = "https://www.dnd5eapi.co/api/monsters/?challenge_rating=" + Challenge[x];
 
 // Initialize hero stats before they are pulled from db fetch
 let heroName = "";
@@ -24,6 +24,7 @@ var monsterDexterity = 0;
 var monsterIntelligence = 0;
 
 var monsterIndex = [];
+
 
 //Quest state variable
 let questProgress = 0;
@@ -698,6 +699,55 @@ function handleChoice() {
   }
 }
 
+class Character {
+  constructor(name,hitpoints,strength,intelligence){
+    this.name = name;
+    this.hitpoints =hitpoints;
+    this.strength = strength;
+    this.intelligence = intelligence;
+  }
+
+  displayHealth(){
+    console.log(`${this.name} has ${this.hitpoints} health left`)
+  }
+
+  hasDied(){
+    if (this.hitpoints <= 0){
+      console.log(`${this.name} has lost all health and has died!`);
+      return true;
+    }
+    return false;
+  }
+
+  attack(opponent){
+    opponent.hitpoints -= this.strength;
+  }
+}
+
+var newHero = new Character(heroName, heroHp, heroAttack, heroMana)
+var newMonster = new Character(monsterName, monsterLife, monsterStrength, monsterIntelligence)
+let heroTurn = true;
+
+newHero.displayHealth();
+newMonster.displayHealth();
+
+function fight(){
+  if (newHero.hasDied() || newMonster.hasDied()){
+    clearInterval(fight());
+  } else if (heroTurn){
+    newHero.attack(newMonster);
+    newMonster.displayHealth();
+  } else {
+    newMonster.attack(newHero);
+    newHero.displayHealth();
+  }
+
+  heroTurn = !heroTurn
+  fight();
+};
+
+
+
 // Event Listeners
 answerButtonsEl.addEventListener("click", function (event) {
   var buttonClicked = event.target;
@@ -707,6 +757,14 @@ answerButtonsEl.addEventListener("click", function (event) {
     handleChoice();
   }
 });
+
+answerButtonsEl.addEventListener("click", function(event){
+  var buttonClicked = event.target;
+  if (buttonClicked.matches("button")) {
+    selectedChoice = buttonClicked.id;
+    fight();
+  }
+}),
 
 // Calls the init function
 startGame();
