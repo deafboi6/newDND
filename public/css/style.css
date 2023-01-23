@@ -27,7 +27,7 @@ a {
 a:-webkit-any-link {
   color: aliceblue;
   font-size: 40px;
-  text-decoration: line-through;
+  /*text-decoration: line-through;*/
   line-height: 50px;
   text-shadow: 0 0 3px #f00;
 }
