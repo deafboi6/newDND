@@ -294,7 +294,7 @@ async function getHero() {
       return response.json();
     })
     .then((heroData) => {
-      heroX = new Character(heroData.name, heroData.attack, heroData.hitPoints, heroData.mana);
+      heroX = new Character(heroData.name, heroData.hitPoints, heroData.attack, heroData.mana);
       // heroName = heroData.name;
       // heroAttack = heroData.attack;
       // heroHp = heroData.hitPoints;
