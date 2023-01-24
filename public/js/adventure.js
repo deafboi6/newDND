@@ -309,7 +309,7 @@ async function getHero() {
 }
 
 async function getEnemy() {
-  var API = "https://www.dnd5eapi.co/api/monsters/?challenge_rating=" + Challenge[x];
+  var API = "https://www.dnd5eapi.co/api/monsters/?challenge_rating=5";
 
   await fetch(API)
     .then(async function (response) {
