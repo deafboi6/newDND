@@ -1,14 +1,22 @@
-
 // Hooks to the UI
 const answerButtonsEl = document.querySelector(".choiceButtons");
+const combatButtonsEl = document.querySelector(".combatButtons");
 const questionTextEl = document.querySelector("#question-text");
 const answerOneEl = document.querySelector("#choice-one");
 const answerTwoEl = document.querySelector("#choice-two");
 const answerThreeEl = document.querySelector("#choice-three");
 const answerFourEl = document.querySelector("#choice-four");
+const combatOneEl = document.querySelector("#combat-one");
+const combatTwoEl = document.querySelector("#combat-two");
+const combatThreeEl = document.querySelector("#combat-three");
+const combatFourEl = document.querySelector("#combat-four");
 const mapEl = document.querySelector("#dungeon-map");
+const heroHealthEl = document.querySelector("#hero-health");
+const enemyHealthEl = document.querySelector("#enemy-health");
 
 const Challenge = [5, 10, 15];
+
+// const Challenge = [5];
 const x = Math.floor(Math.random() * 3);
 
 // Initialize hero stats before they are pulled from db fetch
@@ -24,7 +32,6 @@ let monsterX = "";
 // var monsterIntelligence = 0;
 
 var monsterIndex = [];
-
 
 //Quest state variable
 let questProgress = 0;
@@ -129,7 +136,7 @@ const questLog = [
   },
   {
     // Room 2 (western) after treasure is collected
-    question: "You finished collecting your treasure, which way do you go next?",
+    question: "You finished collecting your treasure and gained 20 hit points, which way do you go next?",
     choiceOne: "East",
     choiceTwo: "-",
     choiceThree: "-",
@@ -174,7 +181,7 @@ const questLog = [
   },
   {
     // Room 3 (northern) after treasure is collected
-    question: "You finished collecting your treasure, which way do you go next?",
+    question: "You finished collecting your treasure and gained 20 hit points, which way do you go next?",
     choiceOne: "South",
     choiceTwo: "-",
     choiceThree: "-",
@@ -219,7 +226,7 @@ const questLog = [
   },
   {
     // Room 4 (bottom right corner) after treasure is collected
-    question: "You finished collecting your treasure, which way do you go next?",
+    question: "You finished collecting your treasure and gained 20 hit points, which way do you go next?",
     choiceOne: "West",
     choiceTwo: "North",
     choiceThree: "-",
@@ -255,12 +262,21 @@ const questLog = [
   },
   {
     // Room 5 (final room) after monster is defeated
-    question: "You win!",
+    question: "You win! Please refresh the game to play again.",
     choiceOne: "-",
     choiceTwo: "-",
     choiceThree: "-",
     choiceFour: "-",
     search: "room-5-monster-defeated",
+  },
+  {
+    // If Defeated
+    question: "You Died! Please refresh the game to try again.",
+    choiceOne: "-",
+    choiceTwo: "-",
+    choiceThree: "-",
+    choiceFour: "-",
+    search: "hero-defeated",
   },
 ];
 
@@ -283,12 +299,14 @@ async function getHero() {
       // heroAttack = heroData.attack;
       // heroHp = heroData.hitPoints;
       // heroMana = heroData.mana;
-      console.log("Hero has been defined")
+      console.log("Hero has been defined");
+
+      heroHealthEl.textContent = "Hero Health: " + heroX.hitpoints;
     })
     .catch((error) => {
       console.error("Error:", error);
     });
-  }
+}
 
 async function getEnemy() {
   var API = "https://www.dnd5eapi.co/api/monsters/?challenge_rating=" + Challenge[x];
@@ -313,6 +331,8 @@ async function getEnemy() {
         })
         .then(function (data) {
           monsterX = new Character(data.name, data.hit_points, data.strength, data.intelligence);
+          enemyHealthEl.textContent = "Enemy Health: " + monsterX.hitpoints;
+          enemyHealthEl.style.display = "block";
           // monsterLife = data.hit_points;
           // monsterStrength = data.strength;
           // monsterDexterity = data.dexterity;
@@ -320,27 +340,29 @@ async function getEnemy() {
           // console.log(monsterName, monsterLife, monsterStrength, monsterDexterity, monsterIntelligence);
         });
       // console.log(monsterName,monsterLife,monsterStrength,monsterDexterity,monsterIntelligemce);
-      updateQuestLog();
+      // updateQuestLog();
       renderAdventure();
     });
 }
 
 // Update question text with monsters from API
-function updateQuestLog() {
-  questLog[findIndex("dungeon-start")].question = `You've entered a dungon... There's a ${monsterIndex[0]} ahead!`;
-  questLog[findIndex("room-2-monster")].question = `You head to the end of the western hall and enter the room. A ${monsterIndex[1]} appears!`;
-  questLog[findIndex("room-3-monster")].question = `You head to the end of the northern hall and enter the room. A ${monsterIndex[2]} appears!`;
-  questLog[findIndex("room-4-monster")].question = `You continue down the hall and enter the room. A ${monsterIndex[3]} appears!`;
-}
+// function updateQuestLog() {
+//   questLog[findIndex("dungeon-start")].question = `You've entered a dungon... There's a ${monsterIndex[0]} ahead!`;
+//   questLog[findIndex("room-2-monster")].question = `You head to the end of the western hall and enter the room. A ${monsterIndex[1]} appears!`;
+//   questLog[findIndex("room-3-monster")].question = `You head to the end of the northern hall and enter the room. A ${monsterIndex[2]} appears!`;
+//   questLog[findIndex("room-4-monster")].question = `You continue down the hall and enter the room. A ${monsterIndex[3]} appears!`;
+// }
 
 // This is our init function to start the game and call the function to get the Hero's initial stats.
 // Check the web browsers console log to see the stats printed.
 const startGame = async () => {
   getHero();
+  // this will load the answer options
+  renderAdventure();
 
   // getEnemy();
 
-  answerButtonsEl.addEventListener("click", function(event){
+  combatButtonsEl.addEventListener("click", function (event) {
     var buttonClicked = event.target;
     if (buttonClicked.matches("button")) {
       selectedChoice = buttonClicked.id;
@@ -348,7 +370,6 @@ const startGame = async () => {
       beginFight();
     }
   });
-
 };
 
 // renders the question and button text on the front end based on the array and quest progress value
@@ -436,6 +457,8 @@ function handleChoice() {
           //Encounter monster
           questProgress = findIndex("room-4-monster");
           renderAdventure();
+          answerButtonsEl.style.display = "none";
+          combatButtonsEl.style.display = "block";
         } else {
           //Find treasure
           questProgress = findIndex("room-4-treasure");
@@ -474,6 +497,8 @@ function handleChoice() {
           //Encounter monster
           questProgress = findIndex("room-2-monster");
           renderAdventure();
+          answerButtonsEl.style.display = "none";
+          combatButtonsEl.style.display = "block";
         } else {
           //Find treasure
           questProgress = findIndex("room-2-treasure");
@@ -495,6 +520,8 @@ function handleChoice() {
           //Encounter monster
           questProgress = findIndex("room-3-monster");
           renderAdventure();
+          answerButtonsEl.style.display = "none";
+          combatButtonsEl.style.display = "block";
         } else {
           //Find treasure
           questProgress = findIndex("room-3-treasure");
@@ -546,6 +573,8 @@ function handleChoice() {
           //Encounter monster
           questProgress = findIndex("room-4-monster");
           renderAdventure();
+          answerButtonsEl.style.display = "none";
+          combatButtonsEl.style.display = "block";
         } else {
           //Find treasure
           questProgress = findIndex("room-4-treasure");
@@ -559,6 +588,8 @@ function handleChoice() {
       if (room1Complete && room2Complete && room3Complete && room4Complete) {
         questProgress = findIndex("room-5-monster");
         renderAdventure();
+        answerButtonsEl.style.display = "none";
+        combatButtonsEl.style.display = "block";
       } else {
         questProgress = findIndex("boss-room-not-ready");
         renderAdventure();
@@ -584,7 +615,7 @@ function handleChoice() {
   /////////////////////////////////////////////////////
   // Room 2 fight with monster
   else if (questProgress === findIndex("room-2-monster")) {
-    if (selectedChoice === "choice-one") {
+    if (selectedChoice === "combat-one") {
       questProgress = findIndex("room-2-monster-defeated");
       renderAdventure();
     }
@@ -600,6 +631,8 @@ function handleChoice() {
   }
   // Room 2 treasure collected
   else if (questProgress === findIndex("room-2-treasure")) {
+    heroX.hitpoints = heroX.hitpoints + 20;
+    heroHealthEl.textContent = "Hero Health: " + heroX.hitpoints;
     if (selectedChoice === "choice-one") {
       questProgress = findIndex("room-2-treasure-collected");
       renderAdventure();
@@ -619,7 +652,7 @@ function handleChoice() {
   /////////////////////////////////////////////////////
   // Room 3 fight with monster
   else if (questProgress === findIndex("room-3-monster")) {
-    if (selectedChoice === "choice-one") {
+    if (selectedChoice === "combat-one") {
       questProgress = findIndex("room-3-monster-defeated");
       renderAdventure();
     }
@@ -634,6 +667,8 @@ function handleChoice() {
   }
   // Room 3  treasure collected
   else if (questProgress === findIndex("room-3-treasure")) {
+    heroX.hitpoints = heroX.hitpoints + 20;
+    heroHealthEl.textContent = "Hero Health: " + heroX.hitpoints;
     if (selectedChoice === "choice-one") {
       questProgress = findIndex("room-3-treasure-collected");
       renderAdventure();
@@ -653,7 +688,7 @@ function handleChoice() {
   /////////////////////////////////////////////////////
   // Room 4 if fight with monster
   else if (questProgress === findIndex("room-4-monster")) {
-    if (selectedChoice === "choice-one") {
+    if (selectedChoice === "combat-one") {
       questProgress = findIndex("room-4-monster-defeated");
       renderAdventure();
     }
@@ -674,6 +709,8 @@ function handleChoice() {
   }
   // Room 4 collect treasure
   else if (questProgress === findIndex("room-4-treasure")) {
+    heroX.hitpoints = heroX.hitpoints + 20;
+    heroHealthEl.textContent = "Hero Health: " + heroX.hitpoints;
     if (selectedChoice === "choice-one") {
       questProgress = findIndex("room-4-treasure-collected");
       renderAdventure();
@@ -697,33 +734,34 @@ function handleChoice() {
   /////////////////////////////////////////////////////
   // Room 5 fight with monster
   else if (questProgress === findIndex("room-5-monster")) {
-    if (selectedChoice === "choice-one") {
+    if (selectedChoice === "combat-one") {
       questProgress = findIndex("room-5-monster-defeated");
+      answerButtonsEl.style.display = "none";
       renderAdventure();
     }
   }
 }
 
 class Character {
-  constructor(name,hitpoints,strength,intelligence){
+  constructor(name, hitpoints, strength, intelligence) {
     this.name = name;
     this.hitpoints = hitpoints;
     this.strength = strength;
     this.intelligence = intelligence;
   }
-  displayHealth(){
-    console.log(`${this.name} has ${this.hitpoints} health left`)
+  displayHealth() {
+    console.log(`${this.name} has ${this.hitpoints} health left`);
   }
 
-  hasDied(){
-    if (this.hitpoints <= 0){
+  hasDied() {
+    if (this.hitpoints <= 0) {
       console.log(`${this.name} has lost all health and has died!`);
       return true;
     }
     return false;
   }
 
-  attack(opponent){
+  attack(opponent) {
     opponent.hitpoints -= this.strength;
   }
 }
@@ -732,25 +770,39 @@ class Character {
 // var newMonster = new Character(monsterName, monsterLife, monsterStrength, monsterIntelligence);
 let heroTurn = true;
 
-
-function beginFight(){
-const fight = setInterval(() => {
-  console.log(heroX, monsterX);
-  if (heroX.hasDied() || monsterX.hasDied()){
-    clearInterval(fight);
-  } else if (heroTurn){
-    heroX.attack(monsterX);
-    monsterX.displayHealth();
-  } else {
-    monsterX.attack(heroX);
-    heroX.displayHealth();
-  }
-  heroTurn = !heroTurn
-}, 2000);
+function beginFight() {
+  const fight = setInterval(() => {
+    console.log(heroX, monsterX);
+    if (heroX.hasDied() || monsterX.hasDied()) {
+      if (heroX.hasDied()) {
+        combatButtonsEl.style.display = "none";
+        heroHealthEl.textContent = "Hero Health: Died";
+        questProgress = findIndex("hero-defeated");
+        renderAdventure();
+      } else if (monsterX.hasDied()) {
+        enemyHealthEl.textContent = "Enemy Health: Died";
+        answerButtonsEl.style.display = "block";
+        combatButtonsEl.style.display = "none";
+        enemyHealthEl.style.display = "none";
+        handleChoice();
+      }
+      clearInterval(fight);
+    } else if (heroTurn) {
+      heroX.attack(monsterX);
+      monsterX.displayHealth();
+      heroHealthEl.textContent = "Hero Health: " + heroX.hitpoints;
+      enemyHealthEl.textContent = "Enemy Health: " + monsterX.hitpoints;
+    } else {
+      monsterX.attack(heroX);
+      heroX.displayHealth();
+      heroHealthEl.textContent = "Hero Health: " + heroX.hitpoints;
+      enemyHealthEl.textContent = "Enemy Health: " + monsterX.hitpoints;
+    }
+    heroTurn = !heroTurn;
+  }, 2000);
 }
 
-
-// Event Listeners
+// // Event Listeners
 answerButtonsEl.addEventListener("click", function (event) {
   var buttonClicked = event.target;
 
@@ -759,14 +811,6 @@ answerButtonsEl.addEventListener("click", function (event) {
     handleChoice();
   }
 });
-
-// answerButtonsEl.addEventListener("click", function(event){
-//   var buttonClicked = event.target;
-//   if (buttonClicked.matches("button")) {
-//     selectedChoice = buttonClicked.id;
-//     beginFight();
-//   }
-// });
 
 // Calls the init function
 startGame();
