@@ -4,7 +4,8 @@
 
 * {
   font-family: fantasy;
-  cursor:/* Start https://www.cursors-4u.com */url(https://cur.cursors-4u.net/games/gam-11/gam1078.ani), url(https://cur.cursors-4u.net/games/gam-11/gam1078.png), auto !important; /* End https://www.cursors-4u.com */
+  cursor:/* Start https://www.cursors-4u.com */
+    url(https://cur.cursors-4u.net/games/gam-11/gam1078.ani), url(https://cur.cursors-4u.net/games/gam-11/gam1078.png), auto !important; /* End https://www.cursors-4u.com */
 }
 
 body {
@@ -22,7 +23,6 @@ nav {
 a {
   padding: 8px 16px;
 }
-
 
 a:-webkit-any-link {
   color: aliceblue;
@@ -74,23 +74,23 @@ main {
 
 /* Tablets */
 @media screen and (max-width: 992px) {
-  body {
+  /* body {
     background:rgb(128, 114, 114);
-  }
+  } */
 }
 
 /* Large Smartphones */
 @media screen and (max-width: 768px) {
-    body {
+  /* body {
       background:rgb(128, 114, 114);
-    }
+    } */
 }
 
 /* Small Smartphones */
-@media screen and (max-width:576px) {
-  body {
+@media screen and (max-width: 576px) {
+  /* body {
     background:rgb(128, 114, 114)
-  }
+  } */
 }
 
 h2 {
@@ -99,7 +99,6 @@ h2 {
   line-height: 50px;
   text-shadow: 0 0 3px #f00;
 }
-
 
 a {
   text-decoration: none;
