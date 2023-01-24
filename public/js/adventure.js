@@ -39,7 +39,7 @@ let randomEncounter = 0;
 const questLog = [
   {
     // Dungeon start
-    question: "You've entered a dungon... There's a monster ahead.",
+    question: "You've entered a dungeon... There's a monster ahead.",
     choiceOne: "Fight",
     choiceTwo: "-",
     choiceThree: "-",
@@ -373,9 +373,9 @@ function renderAdventure() {
   } else if (questProgress === findIndex("final-crossing")) {
     mapEl.src = "https://res.cloudinary.com/dfyvcni4b/image/upload/v1674191722/newDND/hero_in_right_hallway_dxe5g4.jpg";
   } else if (questProgress === findIndex("room-5-monster")) {
-    mapEl.src = "";
+    mapEl.src = "https://res.cloudinary.com/dfyvcni4b/image/upload/v1674013842/newDND/Final_Boss_flhtev.jpg";
   } else if (questProgress === findIndex("room-5-monster-defeated")) {
-    mapEl.src = "";
+    mapEl.src = "https://res.cloudinary.com/dfyvcni4b/image/upload/v1674013842/newDND/Congratulations_rdyfgl.jpg";
   }
   // set the question and button text
   questionTextEl.textContent = questLog[questProgress].question;

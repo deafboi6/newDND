@@ -17,6 +17,9 @@ h1 {
   }
 
 .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     position: relative;
     text-align: center;
 }
@@ -25,7 +28,7 @@ h1 {
     position: relative;
 }
 
-.name {
+/* .name {
     font-size: large;
     font-weight: bold;
     position: absolute;
@@ -55,6 +58,17 @@ h1 {
     position: absolute;
     top: 55%;
     left: 46%;
+} */
+
+.card-text {
+    font-size: 25px;
+    font-weight: bold;
+    position: absolute;
+    top: 18%;
+    /* left: 46%;  */
+    /* display: flex; */
+    justify-content: center; 
+
 }
 
 .hero {
@@ -66,4 +80,9 @@ img {
     position: relative;
     border: 2px solid rgb(232, 168, 111);
     box-shadow: 0 0 20px 14px brown inset;
+}
+
+.hero-Btns {
+    display: block;
+    /* font-size: 20px; */
 }
