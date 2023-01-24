@@ -612,6 +612,597 @@ h1 {
     }
 }
 
+#combat-one {
+    cursor: pointer;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 15pt;
+    width: 200px;
+    height: 45px;
+    position: relative;
+    color: #777;
+    z-index: 1;
+    transition: all 0.5s ease-in-out;
+    border-radius: 0px;
+    background: transparent;
+    padding: 0;
+    overflow: hidden;
+    border: none;
+}
+
+#combat-one::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #bbb);
+    animation: combat-one-right 2s linear infinite;
+    transition: 0.5s ease-in-out;
+}
+
+#combat-one:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, #bbb);
+    animation: combat-one-bottom 2s linear infinite;
+    animation-delay: 1s;
+    transform: translateY(-100%);
+}
+
+#combat-one button {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 4px;
+}
+
+#combat-one button::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to top, transparent, #bbb);
+    animation: combat-one-top 2s linear infinite;
+    animation-delay: 1s;
+    transform: translateY(-100%);
+}
+
+#combat-one:hover:before {
+    background: linear-gradient(to right, transparent, red);
+}
+
+#combat-one:hover:after {
+    background: linear-gradient(to bottom, transparent, red);
+}
+
+#combat-one button:hover:before {
+    background: linear-gradient(to top, transparent, red);
+}
+
+#combat-one button:hover:after {
+    background: linear-gradient(to left, transparent, red);
+}
+
+#combat-one:hover {
+    color: red;
+}
+
+#combat-one:active:before {
+    background: linear-gradient(to right, transparent, #00a7fc);
+}
+
+#combat-one:active::after {
+    background: linear-gradient(to bottom, transparent, #00a7fc);
+}
+
+#combat-one button:active::before {
+    background: linear-gradient(to top, transparent, #00a7fc);
+}
+
+#combat-one button:active::after {
+    background: linear-gradient(to left, transparent, #00a7fc);
+}
+
+#combat-one:active {
+    color: #00a7fc;
+}
+
+@keyframes combat-one-right {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes combat-one-top {
+    0% {
+        transform: translateY(100%);
+    }
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
+@keyframes combat-one-left {
+    0% {
+        transform: translateX(100%);
+    }
+    0% {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes combat-one-bottom {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(100%);
+    }
+}
+
+#combat-two {
+    cursor: pointer;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 15pt;
+    width: 200px;
+    height: 45px;
+    position: relative;
+    color: #777;
+    z-index: 1;
+    transition: all 0.5s ease-in-out;
+    border-radius: 0px;
+    background: transparent;
+    padding: 0;
+    overflow: hidden;
+    border: none;
+}
+
+#combat-two::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #bbb);
+    animation: combat-two-right 2s linear infinite;
+    transition: 0.5s ease-in-out;
+}
+
+#combat-two:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, #bbb);
+    animation: combat-two-bottom 2s linear infinite;
+    animation-delay: 1s;
+    transform: translateY(-100%);
+}
+
+#combat-two button {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 4px;
+}
+
+#combat-two button::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to top, transparent, #bbb);
+    animation: combat-two-top 2s linear infinite;
+    animation-delay: 1s;
+    transform: translateY(-100%);
+}
+
+#combat-two:hover:before {
+    background: linear-gradient(to right, transparent, red);
+}
+
+#combat-two:hover:after {
+    background: linear-gradient(to bottom, transparent, red);
+}
+
+#combat-two button:hover:before {
+    background: linear-gradient(to top, transparent, red);
+}
+
+#combat-two button:hover:after {
+    background: linear-gradient(to left, transparent, red);
+}
+
+#combat-two:hover {
+    color: red;
+}
+
+#combat-two:active:before {
+    background: linear-gradient(to right, transparent, #00a7fc);
+}
+
+#combat-two:active::after {
+    background: linear-gradient(to bottom, transparent, #00a7fc);
+}
+
+#combat-two button:active::before {
+    background: linear-gradient(to top, transparent, #00a7fc);
+}
+
+#combat-two button:active::after {
+    background: linear-gradient(to left, transparent, #00a7fc);
+}
+
+#combat-two:active {
+    color: #00a7fc;
+}
+
+@keyframes combat-two-right {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes combat-two-top {
+    0% {
+        transform: translateY(100%);
+    }
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
+@keyframes combat-two-left {
+    0% {
+        transform: translateX(100%);
+    }
+    0% {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes combat-two-bottom {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(100%);
+    }
+}
+
+#combat-three {
+    cursor: pointer;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 15pt;
+    width: 200px;
+    height: 45px;
+    position: relative;
+    color: #777;
+    z-index: 1;
+    transition: all 0.5s ease-in-out;
+    border-radius: 0px;
+    background: transparent;
+    padding: 0;
+    overflow: hidden;
+    border: none;
+}
+
+#combat-three::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #bbb);
+    animation: combat-four-right 2s linear infinite;
+    transition: 0.5s ease-in-out;
+}
+
+#combat-three:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, #bbb);
+    animation: combat-three-bottom 2s linear infinite;
+    animation-delay: 1s;
+    transform: translateY(-100%);
+}
+
+#combat-three button {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 4px;
+}
+
+#combat-three button::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to top, transparent, #bbb);
+    animation: combat-three-top 2s linear infinite;
+    animation-delay: 1s;
+    transform: translateY(-100%);
+}
+
+#combat-three:hover:before {
+    background: linear-gradient(to right, transparent, red);
+}
+
+#combat-three:hover:after {
+    background: linear-gradient(to bottom, transparent, red);
+}
+
+#combat-three button:hover:before {
+    background: linear-gradient(to top, transparent, red);
+}
+
+#combat-three button:hover:after {
+    background: linear-gradient(to left, transparent, red);
+}
+
+#combat-three:hover {
+    color: red;
+}
+
+#combat-three:active:before {
+    background: linear-gradient(to right, transparent, #00a7fc);
+}
+
+#combat-three:active::after {
+    background: linear-gradient(to bottom, transparent, #00a7fc);
+}
+
+#combat-three button:active::before {
+    background: linear-gradient(to top, transparent, #00a7fc);
+}
+
+#combat-three button:active::after {
+    background: linear-gradient(to left, transparent, #00a7fc);
+}
+
+#combat-three:active {
+    color: #00a7fc;
+}
+
+@keyframes combat-three-right {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes combat-three-top {
+    0% {
+        transform: translateY(100%);
+    }
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
+@keyframes combat-three-left {
+    0% {
+        transform: translateX(100%);
+    }
+    0% {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes combat-three-bottom {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(100%);
+    }
+}
+
+#combat-four {
+    cursor: pointer;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 15pt;
+    width: 200px;
+    height: 45px;
+    position: relative;
+    color: #777;
+    z-index: 1;
+    transition: all 0.5s ease-in-out;
+    border-radius: 0px;
+    background: transparent;
+    padding: 0;
+    overflow: hidden;
+    border: none;
+}
+
+#combat-four::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #bbb);
+    animation: combat-four-right 2s linear infinite;
+    transition: 0.5s ease-in-out;
+}
+
+#combat-four:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, #bbb);
+    animation: choice-four-bottom 2s linear infinite;
+    animation-delay: 1s;
+    transform: translateY(-100%);
+}
+
+#combat-four button {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 4px;
+}
+
+#combat-four button::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to top, transparent, #bbb);
+    animation: combat-four-top 2s linear infinite;
+    animation-delay: 1s;
+    transform: translateY(-100%);
+}
+
+#combat-four:hover:before {
+    background: linear-gradient(to right, transparent, red);
+}
+
+#combat-four:hover:after {
+    background: linear-gradient(to bottom, transparent, red);
+}
+
+#combat-four button:hover:before {
+    background: linear-gradient(to top, transparent, red);
+}
+
+#combat-four button:hover:after {
+    background: linear-gradient(to left, transparent, red);
+}
+
+#combat-four:hover {
+    color: red;
+}
+
+#combat-four:active:before {
+    background: linear-gradient(to right, transparent, #00a7fc);
+}
+
+#combat-four:active::after {
+    background: linear-gradient(to bottom, transparent, #00a7fc);
+}
+
+#combat-four button:active::before {
+    background: linear-gradient(to top, transparent, #00a7fc);
+}
+
+#combat-four button:active::after {
+    background: linear-gradient(to left, transparent, #00a7fc);
+}
+
+#combat-four:active {
+    color: #00a7fc;
+}
+
+@keyframes combat-four-right {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes combat-four-top {
+    0% {
+        transform: translateY(100%);
+    }
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
+@keyframes combat-four-left {
+    0% {
+        transform: translateX(100%);
+    }
+    0% {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes combat-four-bottom {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(100%);
+    }
+}
+
+#hero-health {
+    color: green;
+    cursor: pointer;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 15pt;
+    height: 45px;
+    position: relative;
+    border-radius: 0px;
+    background: transparent;
+    padding: 0;
+    overflow: hidden;
+    border: none;
+    margin-top: 20px;
+}
+
+#enemy-health {
+    color: red;
+    cursor: pointer;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 15pt;
+    height: 45px;
+    position: relative;
+    border-radius: 0px;
+    background: transparent;
+    padding: 0;
+    overflow: hidden;
+    border: none;
+}
+
 .questions {
     box-shadow: 0 4px 8px 0 rgba(194, 123, 123, 0.743), 0 6px 20px 0 rgba(224, 193, 193, 0.241);
     text-align: center;
