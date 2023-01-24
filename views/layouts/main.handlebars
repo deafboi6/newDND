@@ -11,12 +11,12 @@
       <h1>newDND</h1>
     </header>
     <nav>
-      <a href="/">Homepage</a>
       {{#if logged_in}}
+      <a href="/">Homepage</a>
         <a href="/create" id="hero-create">Create Hero</a>
         <a href="" id="logout">Logout</a>
-      {{else}}
-        <a href="/login">Login</a>
+      {{!-- {{else}}
+        <a href="/login">Login</a> --}}
       {{/if}}
     </nav>
     <main>
