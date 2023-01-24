@@ -2,7 +2,7 @@ const router = require("express").Router();
 const { Hero, User } = require("../../models");
 const withAuth = require("../../utils/auth");
 
-router.get("/:id", async (req, res) => {
+router.get("/:id", withAuth, async (req, res) => {
   try {
     const heroData = await Hero.findByPk(req.params.id);
 
