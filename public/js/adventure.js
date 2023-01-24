@@ -294,7 +294,7 @@ async function getHero() {
       return response.json();
     })
     .then((heroData) => {
-      heroX = new Character(heroData.name, heroData.attack, heroData.hitPoints, heroData.mana);
+      heroX = new Character(heroData.name, heroData.hitPoints, heroData.attack, heroData.mana);
       // heroName = heroData.name;
       // heroAttack = heroData.attack;
       // heroHp = heroData.hitPoints;
@@ -309,7 +309,7 @@ async function getHero() {
 }
 
 async function getEnemy() {
-  var API = "https://www.dnd5eapi.co/api/monsters/?challenge_rating=" + Challenge[x];
+  var API = "https://www.dnd5eapi.co/api/monsters/?challenge_rating=5";
 
   await fetch(API)
     .then(async function (response) {
