@@ -46,7 +46,7 @@ let randomEncounter = 0;
 const questLog = [
   {
     // Dungeon start
-    question: "You've entered a dungon... There's a monster ahead.",
+    question: "You've entered a dungeon... There's a monster ahead.",
     choiceOne: "Fight",
     choiceTwo: "-",
     choiceThree: "-",

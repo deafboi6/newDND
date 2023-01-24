@@ -35,4 +35,18 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+//deletes hero
+router.delete("/:id", async (req, res) => {
+  try {
+    await Hero.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+    res.status(200).json("hero deleted!");
+  } catch(err) {
+    res.status(500).json(err);
+  }
+});
+
 module.exports = router;
