@@ -1,0 +1,20 @@
+<link rel="stylesheet" href="/css/herocard.css">
+<div>
+<div class="container">
+
+<img src="https://i.ibb.co/dGZKPXT/IMG-6183.png" alt="IMG-6183" border="0">
+  <div class="card-text">
+    <p class="name">Name: {{name}}</p>
+    <p class="attack">Attack: {{attack}}</p>
+    <p class="hitpoints">Hit Points: {{hitPoints}}</p>
+    <p class="mana">Mana: {{mana}}</p>
+  </div>
+</div>
+
+<h4 class="hero-Btns">
+  <a href="/api/adventure/{{id}}">Choose Hero</a>
+  <a href="" class="deleteBtn" data-id="{{id}}">Delete Hero</a>
+</h4>
+</div>
+
+<script src="/js/hero-delete.js"></script>

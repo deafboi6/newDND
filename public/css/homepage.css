@@ -1,0 +1,30 @@
+h1 {
+    font-size: 75px;
+    margin-top: 35px;
+    border: #f00;
+    border-style: double;
+    border-width: medium;
+    border-radius: 50px;
+    border-collapse: inherit;
+    border-top: #f00;
+    text-align: center;
+    color: white;
+    transition: 5s;
+    -webkit-transition: all 2s ease-in;
+    -moz-transition: all 2s ease-in;
+    -o-transition: all 10s ease-in;
+    text-shadow: 8px 8px 4px #f00;
+  }
+
+.hero-create-card {
+    width: 50%;
+    box-shadow: 0 4px 8px 0 rgba(240, 237, 237, 0.743), 0 6px 20px 0 rgba(224, 193, 193, 0.241);
+    text-align: center;
+    object-position: center;
+    margin: auto;
+    animation: fadeIn 10s;
+    -webkit-animation: fadeIn 10s;
+    -moz-animation: fadeIn 10s;
+    -o-animation: fadeIn 10s;   
+    -ms-animation: fadeIn 10s;
+}

@@ -1,0 +1,619 @@
+* {
+    cursor:/* Start https://www.cursors-4u.com */url(https://cur.cursors-4u.net/games/gam-11/gam1078.ani), url(https://cur.cursors-4u.net/games/gam-11/gam1078.png), auto !important; /* End https://www.cursors-4u.com */
+}
+
+h1 {
+    font-size: 50px;
+    margin-top: -15px;
+    border: #f00;
+    border-style: double;
+    border-width: medium;
+    border-radius: 50px;
+    border-collapse: inherit;
+    border-top: #f00;
+    text-align: center;
+    color: white;
+    transition: 2s;
+    /*-webkit-transition: all 3s ease-in;
+    -moz-transition: all 3s ease-in;
+    -o-transition: all 15s ease-in;
+    text-shadow: 8px 8px 4px #f00;*/
+  }
+
+#dungeon-map {
+    width: 700px;
+    position: relative;
+    border: 2px solid rgb(246, 240, 240);
+    box-shadow: 0 0 20px 0px brown;
+}
+
+
+#choice-one {
+    cursor: pointer;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: Marvel;
+    font-size: 15pt;
+    width: 200px;
+    height: 45px;
+    position: relative;
+    color: #777;
+    z-index: 1;
+    transition: all 0.5s ease-in-out;
+    border-radius: 0px;
+    background: transparent;
+    padding: 0;
+    overflow: hidden;
+    border: none;
+  }
+  
+  #choice-one::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #bbb);
+    animation: choice-one-right 2s linear infinite;
+    transition: 0.5s ease-in-out;
+  }
+  
+  #choice-one:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, #bbb);
+    animation: choice-one-bottom 2s linear infinite;
+    animation-delay: 1s;
+    transform: translateY(-100%);
+  }
+  
+  #choice-one button {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 4px;
+  }
+  
+  #choice-one button:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to left, transparent, #bbb);
+    animation: btn-21-left 2s linear infinite;
+  }
+  
+  #choice-one button:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to top, transparent, #bbb);
+    animation: choice-one-top 2s linear infinite;
+    animation-delay: 1s;
+    transform: translateY(-100%);
+  }
+  
+  #choice-one:hover:before {
+    background: linear-gradient(to right, transparent, red);
+  }
+  
+  #choice-one:hover:after {
+    background: linear-gradient(to bottom, transparent, red);
+  }
+  
+  #choice-one button:hover:before {
+    background: linear-gradient(to top, transparent, red);
+  }
+  
+  #choice-one button:hover:after {
+    background: linear-gradient(to left, transparent, red);
+  }
+  
+  #choice-one:hover {
+    color: red;
+  }
+  
+  #choice-one:active:before {
+    background: linear-gradient(to right, transparent, #00a7fc);
+  }
+  
+  #choice-one:active:after {
+    background: linear-gradient(to bottom, transparent, #00a7fc);
+  }
+  
+  #choice-one button:active:before {
+    background: linear-gradient(to top, transparent, #00a7fc);
+  }
+  
+  #choice-one button:active:after {
+    background: linear-gradient(to left, transparent, #00a7fc);
+  }
+  
+  #choice-one:active {
+    color: #00a7fc;
+  }
+  
+  @keyframes choice-one-right {
+    0% {
+      transform: translateX(-100%);
+    }
+  
+    100% {
+      transform: translateX(100%);
+    }
+  
+  }
+  
+  @keyframes choice-one-top {
+    0% {
+      transform: translateY(100%);
+    }
+  
+    100% {
+      transform: translateY(-100%);
+    }
+  
+  }
+  
+  @keyframes choice-one-left {
+    0% {
+      transform: translateX(100%);
+    }
+  
+    100% {
+      transform: translateX(-100%);
+    }
+  
+  }
+  
+  @keyframes choice-one-bottom {
+    0% {
+      transform: translateY(-100%);
+    }
+  
+    100% {
+      transform: translateY(100%);
+    }
+  
+  }
+  
+  #choice-one:focus {
+    outline: none
+  }
+
+  #choice-two {
+    cursor: pointer;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 15pt;
+    width: 200px;
+    height: 45px;
+    position: relative;
+    color: #777;
+    z-index: 1;
+    transition: all 0.5s ease-in-out;
+    border-radius: 0px;
+    background: transparent;
+    padding: 0;
+    overflow: hidden;
+    border: none;
+}
+
+#choice-two::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #bbb);
+    animation: choice-two-right 2s linear infinite;
+    transition: 0.5s ease-in-out;
+}
+
+#choice-two:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, #bbb);
+    animation: choice-two-bottom 2s linear infinite;
+    animation-delay: 1s;
+    transform: translateY(-100%);
+}
+
+#choice-two button {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 4px;
+}
+
+#choice-two button::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to top, transparent, #bbb);
+    animation: choice-two-top 2s linear infinite;
+    animation-delay: 1s;
+    transform: translateY(-100%);
+}
+
+#choice-two:hover:before {
+    background: linear-gradient(to right, transparent, red);
+}
+
+#choice-two:hover:after {
+    background: linear-gradient(to bottom, transparent, red);
+}
+
+#choice-two button:hover:before {
+    background: linear-gradient(to top, transparent, red);
+}
+
+#choice-two button:hover:after {
+    background: linear-gradient(to left, transparent, red);
+}
+
+#choice-two:hover {
+    color: red;
+}
+
+#choice-two:active:before {
+    background: linear-gradient(to right, transparent, #00a7fc);
+}
+
+#choice-two:active::after {
+    background: linear-gradient(to bottom, transparent, #00a7fc);
+}
+
+#choice-two button:active::before {
+    background: linear-gradient(to top, transparent, #00a7fc);
+}
+
+#choice-two button:active::after {
+    background: linear-gradient(to left, transparent, #00a7fc);
+}
+
+#choice-two:active {
+    color: #00a7fc;
+}
+
+@keyframes choice-two-right {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes choice-two-top {
+    0% {
+        transform: translateY(100%);
+    }
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
+@keyframes choice-two-left {
+    0% {
+        transform: translateX(100%);
+    }
+    0% {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes choice-two-bottom {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(100%);
+    }
+}
+
+#choice-three {
+    cursor: pointer;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 15pt;
+    width: 200px;
+    height: 45px;
+    position: relative;
+    color: #777;
+    z-index: 1;
+    transition: all 0.5s ease-in-out;
+    border-radius: 0px;
+    background: transparent;
+    padding: 0;
+    overflow: hidden;
+    border: none;
+}
+
+#choice-three::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #bbb);
+    animation: choice-three-right 2s linear infinite;
+    transition: 0.5s ease-in-out;
+}
+
+#choice-three:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, #bbb);
+    animation: choice-three-bottom 2s linear infinite;
+    animation-delay: 1s;
+    transform: translateY(-100%);
+}
+
+#choice-three button {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 4px;
+}
+
+#choice-three button::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to top, transparent, #bbb);
+    animation: choice-three-top 2s linear infinite;
+    animation-delay: 1s;
+    transform: translateY(-100%);
+}
+
+#choice-three:hover:before {
+    background: linear-gradient(to right, transparent, red);
+}
+
+#choice-three:hover:after {
+    background: linear-gradient(to bottom, transparent, red);
+}
+
+#choice-three button:hover:before {
+    background: linear-gradient(to top, transparent, red);
+}
+
+#choice-three button:hover:after {
+    background: linear-gradient(to left, transparent, red);
+}
+
+#choice-three:hover {
+    color: red;
+}
+
+#choice-three:active:before {
+    background: linear-gradient(to right, transparent, #00a7fc);
+}
+
+#choice-three:active::after {
+    background: linear-gradient(to bottom, transparent, #00a7fc);
+}
+
+#choice-three button:active::before {
+    background: linear-gradient(to top, transparent, #00a7fc);
+}
+
+#choice-three button:active::after {
+    background: linear-gradient(to left, transparent, #00a7fc);
+}
+
+#choice-three:active {
+    color: #00a7fc;
+}
+
+@keyframes choice-three-right {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes choice-three-top {
+    0% {
+        transform: translateY(100%);
+    }
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
+@keyframes choice-three-left {
+    0% {
+        transform: translateX(100%);
+    }
+    0% {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes choice-three-bottom {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(100%);
+    }
+}
+
+#choice-four {
+    cursor: pointer;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 15pt;
+    width: 200px;
+    height: 45px;
+    position: relative;
+    color: #777;
+    z-index: 1;
+    transition: all 0.5s ease-in-out;
+    border-radius: 0px;
+    background: transparent;
+    padding: 0;
+    overflow: hidden;
+    border: none;
+}
+
+#choice-four::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #bbb);
+    animation: choice-four-right 2s linear infinite;
+    transition: 0.5s ease-in-out;
+}
+
+#choice-four:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, #bbb);
+    animation: choice-four-bottom 2s linear infinite;
+    animation-delay: 1s;
+    transform: translateY(-100%);
+}
+
+#choice-four button {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 4px;
+}
+
+#choice-four button::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to top, transparent, #bbb);
+    animation: choice-four-top 2s linear infinite;
+    animation-delay: 1s;
+    transform: translateY(-100%);
+}
+
+#choice-four:hover:before {
+    background: linear-gradient(to right, transparent, red);
+}
+
+#choice-four:hover:after {
+    background: linear-gradient(to bottom, transparent, red);
+}
+
+#choice-four button:hover:before {
+    background: linear-gradient(to top, transparent, red);
+}
+
+#choice-four button:hover:after {
+    background: linear-gradient(to left, transparent, red);
+}
+
+#choice-four:hover {
+    color: red;
+}
+
+#choice-four:active:before {
+    background: linear-gradient(to right, transparent, #00a7fc);
+}
+
+#choice-four:active::after {
+    background: linear-gradient(to bottom, transparent, #00a7fc);
+}
+
+#choice-four button:active::before {
+    background: linear-gradient(to top, transparent, #00a7fc);
+}
+
+#choice-four button:active::after {
+    background: linear-gradient(to left, transparent, #00a7fc);
+}
+
+#choice-four:active {
+    color: #00a7fc;
+}
+
+@keyframes choice-four-right {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes choice-four-top {
+    0% {
+        transform: translateY(100%);
+    }
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
+@keyframes choice-four-left {
+    0% {
+        transform: translateX(100%);
+    }
+    0% {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes choice-four-bottom {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(100%);
+    }
+}
+
+.questions {
+    box-shadow: 0 4px 8px 0 rgba(194, 123, 123, 0.743), 0 6px 20px 0 rgba(224, 193, 193, 0.241);
+    text-align: center;
+    object-position: center;
+}
